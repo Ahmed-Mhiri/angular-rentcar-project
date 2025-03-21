@@ -1,4 +1,4 @@
-import { Component, HostListener  } from '@angular/core';
+import { Component, HostListener ,  ElementRef, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-nav-bar',
@@ -10,6 +10,7 @@ export class NavBarComponent {
   lastScrollTop = 0;
   isNavbarHidden = false;
   menuOpen = false;
+  @ViewChild('mobileMenu') mobileMenu!: ElementRef;
 
   @HostListener('window:scroll', [])
   onWindowScroll() {
@@ -24,6 +25,12 @@ export class NavBarComponent {
 
   toggleMenu() {
     this.menuOpen = !this.menuOpen;
+  }
+  @HostListener('document:click', ['$event'])
+  onClickOutside(event: Event) {
+    if (this.menuOpen && this.mobileMenu && !this.mobileMenu.nativeElement.contains(event.target)) {
+      this.menuOpen = false;
+    }
   }
 
 }
