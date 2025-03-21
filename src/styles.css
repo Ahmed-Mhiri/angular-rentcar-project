@@ -1,1 +1,109 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+:root {
+    /* Warning Palette */
+    --warning-dark-900: #7A4D0B;
+    --warning-dark-800: #936312;
+    --warning-dark-700: #7B2D1D;
+    --warning-dark-600: #DBA32A;
+    --warning-default-500: #FFC73A;
+    --warning-light-400: #FFDC6B;
+    --warning-light-300: #FFE488;
+    --warning-light-200: #FFF8B0;
+    --warning-light-100: #FFFBD7;
+  
+    /* Error Palette */
+    --error-dark-900: #7A0619;
+    --error-dark-800: #930B16;
+    --error-dark-700: #B71112;
+    --error-dark-600: #DB2719;
+    --error-default-500: #FF4423;
+    --error-light-400: #FF7F59;
+    --error-light-300: #FFA37A;
+    --error-light-200: #FBC8A6;
+    --error-light-100: #FFE7D3;
+  
+    /* Success Palette */
+    --success-dark-900: #3B6506;
+    --success-dark-800: #4C7A0B;
+    --success-dark-700: #659711;
+    --success-dark-600: #7FB519;
+    --success-default-500: #9CD323;
+    --success-light-400: #BCE455;
+    --success-light-300: #D3F178;
+    --success-light-200: #E8FAA6;
+    --success-light-100: #F5FCD2;
+  
+    /* Primary Neutral Palette */
+    --neutral-dark-900: #0A196F;
+    --neutral-dark-800: #102587;
+    --neutral-dark-700: #1A37A7;
+    --neutral-dark-600: #264BC8;
+    --neutral-default-500: #3536E9;
+    --neutral-light-400: #656DF1;
+    --neutral-light-300: #85A8F8;
+    --neutral-light-200: #A6C6FC;
+    --neutral-light-100: #D6E4FD;
+    --neutral-white-0: #FFFFFF;
+  
+    /* Secondary Information Palette */
+    --secondary-dark-900: #040B15;
+    --secondary-dark-800: #0B0C19;
+    --secondary-dark-700: #0D121F;
+    --secondary-dark-600: #131825;
+    --secondary-default-500: #1A202C;
+    --secondary-light-400: #596780;
+    --secondary-light-300: #90A3BF;
+    --secondary-light-200: #C3D4E9;
+    --secondary-light-100: #E6E9F4;
+  
+    /* Primary Information Palette */
+    --info-dark-900: #102E7A;
+    --info-dark-800: #1A4393;
+    --info-dark-700: #2A60B7;
+    --info-dark-600: #3D81D8;
+    --info-default-500: #54A6FF;
+    --info-light-400: #7BC2FF;
+    --info-light-300: #9BD3FF;
+    --info-light-200: #BAE5FF;
+    --info-light-100: #DCF3FF;
+  }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: "Poppins",'Kumbh Sans','Open Sans', 'sans-serif';
+    background-color: #ffffff;
+    color: #1A202C;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  ul, ol {
+    list-style: none;
+  }
+  
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  img, picture {
+    max-width: 100%;
+    display: block;
+  }
+  
+  button {
+    background: none;
+    border: none;
+    font: inherit;
+    cursor: pointer;
+    padding: 0;
+  }
+  
+  
