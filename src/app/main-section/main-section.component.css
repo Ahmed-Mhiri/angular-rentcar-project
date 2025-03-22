@@ -1,0 +1,14 @@
+/* Container to hold the image */
+.image-container {
+    width: 100%;  /* Make the container take up the full width */
+    height: 30vh; /* Set the height to 30% of the viewport height */
+    overflow: hidden; /* Prevent image from overflowing the container */
+  }
+  
+  /* Make the image responsive */
+  .image-container img {
+    width: 100%;  /* Ensure the image takes the full width of its parent */
+    height: 100%; /* Make the image take up the full height of the container */
+    object-fit: cover; /* Optionally, use 'cover' to make sure the image covers the container without stretching */
+  }
+  
