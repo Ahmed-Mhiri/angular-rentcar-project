@@ -1,6 +1,16 @@
+.main-container{
+  height: 100dvh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-image: url(https://images.pexels.com/photos/120049/pexels-photo-120049.jpeg);
+  background-size: cover;
+  background-position: center center; 
+  background-repeat: no-repeat; 
+}
 .big-container{
-  background: linear-gradient(135deg, #f0f4f7, #c9e4f7);
-
+  background: transparent;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 .container {
@@ -130,8 +140,7 @@
 }
 
 .show-btn:hover {
-  background-color: #031f5c;
-  transform: scale(1.05);
+  background-color: #1c67bb;
 }
 
 /* Suggestions Dropdown */
@@ -159,3 +168,32 @@
 .suggestions li:hover {
   background-color: #f3f3f7;
 }
+.announcement-banner {
+  background: linear-gradient(to right, #1e3a8a, #3b82f6); /* Blue gradient */
+  color: white; /* Text color */
+  font-size: 3rem; /* Font size */
+  height: 15vh;
+  font-weight: bold; /* Bold text */
+  text-align: center; /* Center align text */
+  padding: 15px 30px; /* Padding around the banner */
+  margin: 20px 0; /* Margin above and below the banner */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  animation: slideIn 1s ease-out; /* Animation for sliding in */
+}
+
+/* Hover effect */
+.announcement-banner:hover {
+  background: linear-gradient(to right, #3b82f6, #1e3a8a); /* Reverse gradient on hover */
+}
+
+/* Add animation for sliding */
+@keyframes slideIn {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+

@@ -1,86 +1,94 @@
-<div class="big-container">
-  <div class="options">
-    <button 
-      [ngClass]="{'car-type': true, 'selected': isCarSelected}" 
-      (click)="toggleVehicle('car')">
-      Car
-    </button>
-    <button 
-      [ngClass]="{'car-type': true, 'selected': !isCarSelected}" 
-      (click)="toggleVehicle('truck')">
-      Truck
-    </button>
-  </div>
-  <div class="container">
-    <div class="form-fields">
-      <div class="location-fields">
-        <!-- Pickup Location -->
-        <div class="field">
-          <label>Pickup</label>
-          <div class="input-wrapper" (click)="showLocationSuggestions('pickup')">
-            ✈️
-            <input 
-              type="text" 
-              [(ngModel)]="pickupLocation" 
-              (focus)="showLocationSuggestions('pickup')" 
-              (input)="filterLocations('pickup')" 
-              placeholder="Enter pickup location" />
-          </div>
-          <div *ngIf="isPickupFocused && filteredPickupSuggestions.length > 0" class="suggestions">
-            <ul>
-              <li *ngFor="let location of filteredPickupSuggestions" 
-                  (click)="selectLocation(location, 'pickup')">
-                {{ location }}
-              </li>
-            </ul>
-          </div>
-        </div>
-  
-        <!-- Return Location -->
-        <div class="field">
-          <label>Return</label>
-          <div class="input-wrapper" (click)="showLocationSuggestions('return')">
-            🔍
-            <input 
-              type="text" 
-              [(ngModel)]="returnLocation" 
-              (focus)="showLocationSuggestions('return')" 
-              (input)="filterLocations('return')" 
-              placeholder="Enter return location" />
-          </div>
-          <div *ngIf="isReturnFocused && filteredReturnSuggestions.length > 0" class="suggestions">
-            <ul>
-              <li *ngFor="let location of filteredReturnSuggestions" 
-                  (click)="selectLocation(location, 'return')">
-                {{ location }}
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-  
-      <!-- Date Fields (Pickup & Return Dates) -->
-      <div class="date-fields " style="display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;">
-        <div class="field">
-          <label>Pick-up date</label>
-          <div class="date-time">
-            <input type="date" [(ngModel)]="pickupDate" />
-            <input type="time" [(ngModel)]="pickupTime" />
-          </div>
-        </div>
-  
-        <div class="field">
-          <label>Return date</label>
-          <div class="date-time">
-            <input type="date" [(ngModel)]="returnDate" />
-            <input type="time" [(ngModel)]="returnTime" />
-          </div>
-        </div>
-      </div>
+<div class="main-container">
+  <div class="big-container">
+    <div class="options">
+      <button 
+        [ngClass]="{'car-type': true, 'selected': isCarSelected}" 
+        (click)="toggleVehicle('car')">
+        Car
+      </button>
+      <button 
+        [ngClass]="{'car-type': true, 'selected': !isCarSelected}" 
+        (click)="toggleVehicle('truck')">
+        Truck
+      </button>
     </div>
-  
-    <!-- Show Cars Button -->
-    <button class="show-btn" (click)="showCars()">Show cars</button>
-  </div>
+    <div class="container">
+      <div class="form-fields">
+        <div class="location-fields">
+          <!-- Pickup Location -->
+          <div class="field">
+            <label style="color: white;">Pickup</label>
+            <div class="input-wrapper" (click)="showLocationSuggestions('pickup')">
+              ✈️
+              <input 
+                type="text" 
+                [(ngModel)]="pickupLocation" 
+                (focus)="showLocationSuggestions('pickup')" 
+                (input)="filterLocations('pickup')" 
+                placeholder="Enter pickup location" />
+            </div>
+            <div *ngIf="isPickupFocused && filteredPickupSuggestions.length > 0" class="suggestions">
+              <ul>
+                <li *ngFor="let location of filteredPickupSuggestions" 
+                    (click)="selectLocation(location, 'pickup')">
+                  {{ location }}
+                </li>
+              </ul>
+            </div>
+          </div>
+    
+          <!-- Return Location -->
+          <div class="field">
+            <label style="color: white;">Return</label>
+            <div class="input-wrapper" (click)="showLocationSuggestions('return')">
+              🔍
+              <input 
+                type="text" 
+                [(ngModel)]="returnLocation" 
+                (focus)="showLocationSuggestions('return')" 
+                (input)="filterLocations('return')" 
+                placeholder="Enter return location" />
+            </div>
+            <div *ngIf="isReturnFocused && filteredReturnSuggestions.length > 0" class="suggestions">
+              <ul>
+                <li *ngFor="let location of filteredReturnSuggestions" 
+                    (click)="selectLocation(location, 'return')">
+                  {{ location }}
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+    
+        <!-- Date Fields (Pickup & Return Dates) -->
+        <div class="date-fields " style="display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;">
+          <div class="field">
+            <label style="color: white;">Pick-up date</label>
+            <div class="date-time">
+              <input type="date" [(ngModel)]="pickupDate" />
+              <input type="time" [(ngModel)]="pickupTime" />
+            </div>
+          </div>
+    
+          <div class="field">
+            <label style="color: white;">Return date</label>
+            <div class="date-time">
+              <input type="date" [(ngModel)]="returnDate" />
+              <input type="time" [(ngModel)]="returnTime" />
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <!-- Show Cars Button -->
+      <button class="show-btn" (click)="showCars()">Show cars</button>
+    </div>
+    </div>
+    <div class="announcement-banner">
+      Rent your Car now
+    </div>
+    
+
 
 </div>
+
