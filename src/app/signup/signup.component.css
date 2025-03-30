@@ -1,0 +1,86 @@
+/* Reuse styles from login */
+.page {
+  background: url('https://images.pexels.com/photos/168938/pexels-photo-168938.jpeg') no-repeat center center fixed;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+/* Centered signup box */
+.signup-container {
+  max-width: 500px;
+  width: 90%;
+  padding: clamp(1rem, 3vw, 3rem);
+  text-align: center;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Heading */
+h2 {
+  font-size: clamp(1.5rem, 2.5vw, 2.5rem);
+  margin-bottom: 1rem;
+}
+
+/* Inputs */
+input {
+  width: 100%;
+  padding: clamp(0.8rem, 1.5vw, 1.2rem);
+  margin: 0.5rem 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: clamp(1rem, 1.8vw, 1.2rem);
+}
+
+/* Button */
+button {
+  background-color: #007bff;
+  color: white;
+  padding: clamp(0.8rem, 2vw, 1.2rem);
+  font-size: clamp(1rem, 1.8vw, 1.2rem);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+/* Error message */
+.error {
+  color: red;
+  font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+  margin-top: 10px;
+}
+
+/* Responsive tweaks */
+@media (max-width: 600px) {
+  .signup-container {
+    padding: 2rem;
+    width: 90%;
+  }
+}
+.signup-link {
+  color: #007bff; /* Blue color for links */
+  text-decoration: none; /* Remove underline */
+  font-size: clamp(0.9rem, 2vw, 1rem); /* Make font size responsive */
+  transition: color 0.3s ease, transform 0.2s ease;
+  cursor: pointer;
+}
+
+.signup-link:hover:hover {
+  color: #0056b3; /* Darker blue when hovering */
+  transform: scale(1.05); /* Slightly increase the size when hovering */
+}
+
+.signup-link:focus:focus {
+  outline: none; /* Remove outline on focus */
+  border-bottom: 2px solid #0056b3; /* Add an underline on focus */
+}

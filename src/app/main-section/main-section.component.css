@@ -172,7 +172,7 @@
   background: linear-gradient(to right, #1e3a8a, #3b82f6); /* Blue gradient */
   color: white; /* Text color */
   font-size: 3rem; /* Font size */
-  height: 15vh;
+  height: fit-content;
   font-weight: bold; /* Bold text */
   text-align: center; /* Center align text */
   padding: 15px 30px; /* Padding around the banner */

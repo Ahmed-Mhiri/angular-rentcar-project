@@ -1,7 +1,5 @@
-
-    <app-nav-bar (menuStateChange)="onMenuStateChange($event)"></app-nav-bar>
+<app-nav-bar (menuStateChange)="onMenuStateChange($event)"></app-nav-bar>
 
 <div class="app-wrapper" [class.blurred]="menuOpen">
-        <app-main-section ngSkipHydration></app-main-section>
-<router-outlet></router-outlet>
+    <router-outlet></router-outlet>
 </div>

@@ -1,10 +1,11 @@
 import { Component, HostListener, ElementRef, ViewChild, Renderer2, RendererFactory2, Inject, OnDestroy, AfterViewInit, Output, EventEmitter } from '@angular/core';
 import { CommonModule, DOCUMENT } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-nav-bar',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,RouterModule],
   templateUrl: './nav-bar.component.html',
   styleUrl: './nav-bar.component.css'
 })
@@ -74,4 +75,5 @@ export class NavBarComponent implements OnDestroy, AfterViewInit {
       this.renderer.removeClass(this.document.body, 'no-scroll');
     }
   }
+
 }

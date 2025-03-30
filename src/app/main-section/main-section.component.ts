@@ -2,12 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClientModule, HttpClient } from '@angular/common/http'; 
 import { Observable } from 'rxjs';
 import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common'; // Ensure CommonModule is imported
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-main-section',
   standalone: true,
-  imports: [FormsModule, HttpClientModule, CommonModule], // Added CommonModule here
+  imports: [FormsModule, HttpClientModule, CommonModule,RouterModule], // Added CommonModule here
   templateUrl: './main-section.component.html',
   styleUrls: ['./main-section.component.css']
 })
@@ -30,8 +32,8 @@ export class MainSectionComponent implements OnInit {
 
   private citiesWithAirports$!: Observable<any>;
 
-  constructor(private http: HttpClient) {}
-
+  constructor(private http: HttpClient,private router: Router) {}
+  
   ngOnInit() {
     this.citiesWithAirports$ = this.http.get<any>('assets/cities_with_airports.json');
 
@@ -87,13 +89,16 @@ export class MainSectionComponent implements OnInit {
   }
 
   showCars() {
-    alert(`Booking details:
-    Vehicle: ${this.isCarSelected ? 'Car' : 'Truck'}
-    Pickup: ${this.pickupLocation}
-    Return: ${this.returnLocation || 'Not specified'}
-    Pickup Date/Time: ${this.pickupDate} ${this.pickupTime}
-    Return Date/Time: ${this.returnDate} ${this.returnTime}`);
- 
+    this.router.navigate(['/search-page']); // Navigate first
+    setTimeout(() => { // Show alert after navigation starts
+      alert(`Booking details:
+      Vehicle: ${this.isCarSelected ? 'Car' : 'Truck'}
+      Pickup: ${this.pickupLocation}
+      Return: ${this.returnLocation || 'Not specified'}
+      Pickup Date/Time: ${this.pickupDate} ${this.pickupTime}
+      Return Date/Time: ${this.returnDate} ${this.returnTime}`);
+    }, 500);
   }
+  
   
 }
