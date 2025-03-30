@@ -15,6 +15,7 @@ import { Router } from '@angular/router';
 })
 export class MainSectionComponent implements OnInit {
   isCarSelected = true;
+  backgroundImageUrl: string = 'url("https://images.pexels.com/photos/120049/pexels-photo-120049.jpeg")';
   pickupLocation = '';
   returnLocation = '';
   pickupDate = '2025-03-23';
@@ -84,9 +85,14 @@ export class MainSectionComponent implements OnInit {
     this.isReturnFocused = false;
   }
 
-  toggleVehicle(type: string) {
+  toggleVehicle(type: string): void {
     this.isCarSelected = type === 'car';
-  }
+    
+    this.backgroundImageUrl = this.isCarSelected 
+        ? 'url("https://images.pexels.com/photos/120049/pexels-photo-120049.jpeg")' 
+        : 'url("https://images.pexels.com/photos/17157308/pexels-photo-17157308/free-photo-of-ford-maverick-on-desert.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2")';
+}
+
 
   showCars() {
     this.router.navigate(['/search-page']); // Navigate first
