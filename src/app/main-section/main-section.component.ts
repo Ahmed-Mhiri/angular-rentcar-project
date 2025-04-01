@@ -14,14 +14,58 @@ import { Router } from '@angular/router';
   styleUrls: ['./main-section.component.css']
 })
 export class MainSectionComponent implements OnInit {
-  isCarSelected = true;
-  backgroundImageUrl: string = 'url("https://images.pexels.com/photos/120049/pexels-photo-120049.jpeg")';
   pickupLocation = '';
   returnLocation = '';
-  pickupDate = '2025-03-23';
+  isPickupLocationValid: boolean = true;
+  isReturnLocationValid: boolean = true;
+  isPickupDateValid: boolean = true;
+  isReturnDateValid: boolean = true;
   pickupTime = '12:30';
-  returnDate = '2025-03-27';
   returnTime = '08:30';
+  minDate!: string;
+  pickupDate!: string;
+  returnDate!: string ;
+  isDateValid: boolean = true;
+  isCarSelected: boolean = true;
+  backgroundImageUrl: string = 'url("https://images.pexels.com/photos/120049/pexels-photo-120049.jpeg")';
+
+
+setDefaultDates() {
+  const currentDate = new Date();
+  
+  // Format today's date as YYYY-MM-DD
+  this.minDate = currentDate.toISOString().split('T')[0];
+
+  // Set pickup date = today + 2 days
+  const pickup = new Date();
+  pickup.setDate(currentDate.getDate() + 2);
+  this.pickupDate = pickup.toISOString().split('T')[0];
+
+  // Set return date = today + 4 days
+  const returnD = new Date();
+  returnD.setDate(currentDate.getDate() + 4);
+  this.returnDate = returnD.toISOString().split('T')[0];
+}
+
+// Update return date's min value when pickup date changes
+updateReturnMinDate() {
+  if (new Date(this.returnDate) < new Date(this.pickupDate)) {
+    this.returnDate = this.pickupDate;
+  }
+}
+validateDates() {
+  const today = new Date().toISOString().split('T')[0];
+
+  // Check if pickup date is valid
+  this.isPickupDateValid = this.pickupDate >= today;
+
+  // Check if return date is valid (must be after pickup date)
+  this.isReturnDateValid = this.returnDate > this.pickupDate;
+
+  // Overall date validation flag
+  this.isDateValid = this.isPickupDateValid && this.isReturnDateValid;
+}
+
 
   pickupSuggestions: string[] = [];
   returnSuggestions: string[] = [];
@@ -33,7 +77,7 @@ export class MainSectionComponent implements OnInit {
 
   private citiesWithAirports$!: Observable<any>;
 
-  constructor(private http: HttpClient,private router: Router) {}
+  constructor(private http: HttpClient,private router: Router) { this.setDefaultDates();}
   
   ngOnInit() {
     this.citiesWithAirports$ = this.http.get<any>('assets/cities_with_airports.json');
@@ -77,13 +121,24 @@ export class MainSectionComponent implements OnInit {
   selectLocation(location: string, field: string) {
     if (field === 'pickup') {
       this.pickupLocation = location;
-      this.returnLocation = location; // Automatically set the return location to the same as pickup
+      this.returnLocation = location; // Automatically set return location
+      this.isPickupLocationValid = true;
+      this.isReturnLocationValid = true;
     } else if (field === 'return') {
       this.returnLocation = location;
+      this.isReturnLocationValid = true;
     }
     this.isPickupFocused = false;
     this.isReturnFocused = false;
   }
+  validateLocation(field: string) {
+    if (field === 'pickup') {
+      this.isPickupLocationValid = this.filteredPickupSuggestions?.includes(this.pickupLocation) ?? false;
+    } else if (field === 'return') {
+      this.isReturnLocationValid = this.filteredReturnSuggestions?.includes(this.returnLocation) ?? false;
+    }
+  }
+  
 
   toggleVehicle(type: string): void {
     this.isCarSelected = type === 'car';
@@ -94,17 +149,35 @@ export class MainSectionComponent implements OnInit {
 }
 
 
-  showCars() {
-    this.router.navigate(['/search-page']); // Navigate first
-    setTimeout(() => { // Show alert after navigation starts
-      alert(`Booking details:
-      Vehicle: ${this.isCarSelected ? 'Car' : 'Truck'}
-      Pickup: ${this.pickupLocation}
-      Return: ${this.returnLocation || 'Not specified'}
-      Pickup Date/Time: ${this.pickupDate} ${this.pickupTime}
-      Return Date/Time: ${this.returnDate} ${this.returnTime}`);
-    }, 500);
+showCars() {
+  // Validate locations
+  this.validateLocation('pickup');
+  this.validateLocation('return');
+
+  // Validate dates
+  this.validateDates();
+
+  // If any validation fails, stop navigation and show an alert
+  if (!this.isPickupLocationValid || !this.isReturnLocationValid || !this.isPickupDateValid || !this.isReturnDateValid) {
+    alert('Please enter valid pickup/return locations and ensure the dates are correct.');
+    return; // Stop navigation
   }
+
+  // Proceed with navigation only if everything is valid
+  this.router.navigate(['/search-page']);
+
+  setTimeout(() => {
+    alert(`Booking details:
+    Vehicle: ${this.isCarSelected ? 'Car' : 'Truck'}
+    Pickup: ${this.pickupLocation}
+    Return: ${this.returnLocation || 'Not specified'}
+    Pickup Date/Time: ${this.pickupDate} ${this.pickupTime}
+    Return Date/Time: ${this.returnDate} ${this.returnTime}`);
+  }, 500);
+}
+
+
+
   
   
 }

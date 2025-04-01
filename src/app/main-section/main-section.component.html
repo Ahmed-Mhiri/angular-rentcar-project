@@ -26,6 +26,7 @@
                 </li>
               </ul>
             </div>
+            <div *ngIf="!isPickupLocationValid" class="error">Invalid pickup location!</div>
           </div>
 
           <!-- Return Location -->
@@ -43,6 +44,7 @@
                 </li>
               </ul>
             </div>
+            <div *ngIf="!isReturnLocationValid" class="error">Invalid return location!</div>
           </div>
         </div>
 
@@ -54,6 +56,7 @@
               <input type="date" [(ngModel)]="pickupDate" />
               <input type="time" [(ngModel)]="pickupTime" />
             </div>
+            <div *ngIf="!isPickupDateValid" class="error">Pickup date must be today or later!</div>
           </div>
 
           <div class="field">
@@ -62,6 +65,7 @@
               <input type="date" [(ngModel)]="returnDate" />
               <input type="time" [(ngModel)]="returnTime" />
             </div>
+            <div *ngIf="!isReturnDateValid" class="error">Return date must be after the pickup date!</div>
           </div>
         </div>
       </div>
