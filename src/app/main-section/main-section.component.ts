@@ -164,7 +164,15 @@ showCars() {
   }
 
   // Proceed with navigation only if everything is valid
-  this.router.navigate(['/search-page']);
+  this.router.navigate(['/search-page'], {
+    queryParams: {
+      vehicle: this.isCarSelected ? 'Car' : 'Truck',
+      pickup: this.pickupLocation,
+      return: this.returnLocation || 'Not specified',
+      pickupDateTime: `${this.pickupDate} ${this.pickupTime}`,
+      returnDateTime: `${this.returnDate} ${this.returnTime}`
+    }
+  })
 
   setTimeout(() => {
     alert(`Booking details:
