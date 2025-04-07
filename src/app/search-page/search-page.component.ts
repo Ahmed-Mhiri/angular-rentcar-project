@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { SearchbarSComponent } from "../searchbar-s/searchbar-s.component";
 import { ActivatedRoute } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-search-page',
   standalone: true,
-  imports: [SearchbarSComponent],
+  imports: [CommonModule],
   templateUrl: './search-page.component.html',
   styleUrls: ['./search-page.component.css']
 })
