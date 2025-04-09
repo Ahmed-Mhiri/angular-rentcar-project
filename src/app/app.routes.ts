@@ -5,9 +5,10 @@ import { FAQComponent } from './faq/faq.component';
 import { LoginComponent } from './login/login.component';
 import { ManageBookingsComponent } from './manage-bookings/manage-bookings.component';
 import { SignupComponent } from './signup/signup.component';
+import { MainPageComponent } from './main-page/main-page.component';
 
 export const routes: Routes = [
-  { path: '', component: MainSectionComponent },
+  { path: '', component: MainPageComponent },
   { path: 'faq', component: FAQComponent } ,
   { path: 'login', component: LoginComponent } ,
   { path: 'search-page', component: SearchPageComponent } ,

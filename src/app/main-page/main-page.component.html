@@ -1,0 +1,12 @@
+<div class="main-container" [ngStyle]="{'background-image': backgroundImageUrl}">
+  <app-main-section
+  (backgroundImageUrlChange)="backgroundImageUrl = $event"
+  (isCarSelectedChange)="isCarSelected = $event"
+></app-main-section>
+  <div class="announcement-banner">
+    {{ isCarSelected ? 'Rent your Car now' : 'Rent your Truck now' }}
+  </div>
+
+
+
+</div>

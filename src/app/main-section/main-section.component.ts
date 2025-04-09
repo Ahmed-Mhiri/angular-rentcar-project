@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { HttpClientModule, HttpClient } from '@angular/common/http'; 
 import { Observable } from 'rxjs';
 import { FormsModule } from '@angular/forms';
@@ -28,6 +28,10 @@ export class MainSectionComponent implements OnInit {
   isDateValid: boolean = true;
   isCarSelected: boolean = true;
   backgroundImageUrl: string = 'url("https://images.pexels.com/photos/120049/pexels-photo-120049.jpeg")';
+  @Output() backgroundImageUrlChange = new EventEmitter<string>();
+  @Output() isCarSelectedChange = new EventEmitter<boolean>();
+  @Output() close = new EventEmitter<void>();
+
 
 
 setDefaultDates() {
@@ -146,6 +150,9 @@ validateDates() {
     this.backgroundImageUrl = this.isCarSelected 
         ? 'url("https://images.pexels.com/photos/120049/pexels-photo-120049.jpeg")' 
         : 'url("https://images.pexels.com/photos/17157308/pexels-photo-17157308/free-photo-of-ford-maverick-on-desert.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2")';
+        this.backgroundImageUrlChange.emit(this.backgroundImageUrl);
+        this.isCarSelectedChange.emit(this.isCarSelected);
+
 }
 
 
@@ -173,6 +180,7 @@ showCars() {
       returnDateTime: `${this.returnDate} ${this.returnTime}`
     }
   })
+  this.close.emit();
 
   setTimeout(() => {
     alert(`Booking details:

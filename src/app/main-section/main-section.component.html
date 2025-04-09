@@ -1,4 +1,4 @@
-<div class="main-container" [ngStyle]="{'background-image': backgroundImageUrl}">
+
   <div class="big-container">
     <div class="options">
       <button [ngClass]="{'car-type': true, 'selected': isCarSelected}" (click)="toggleVehicle('car')">
@@ -74,10 +74,4 @@
       <button class="show-btn" (click)="showCars()">{{ isCarSelected ? 'Show Cars' : 'Show Trucks' }}</button>
     </div>
   </div>
-  <div class="announcement-banner">
-    {{ isCarSelected ? 'Rent your Car now' : 'Rent your Truck now' }}
-  </div>
 
-
-
-</div>
