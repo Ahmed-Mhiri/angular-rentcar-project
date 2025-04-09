@@ -1,0 +1,30 @@
+<div class="card">
+  <div class="header">
+    <h2 class="car-name">{{ car.name }} <span style="color: #ccc; font-weight: normal;">or similar</span></h2>
+    <p class="car-details">{{ car.details }}</p>
+  </div>
+  <div class="features">
+    <div class="feature-item" *ngFor="let feature of car.features">
+      <svg style="width:16px;height:16px" [attr.viewBox]="feature.iconViewBox">
+        <path [attr.fill]="feature.iconFill" [attr.d]="feature.iconPath"></path>
+      </svg>
+      {{ feature.value }}
+    </div>
+  </div>
+  <div class="car-image-container">
+    <img [src]="car.image" alt="Car image" class="car-image">
+  </div>
+  <div class="footer">
+    <div class="miles-included">
+      <svg style="width:16px;height:16px;color: #a7f3d0;" viewBox="0 0 24 24">
+        <path fill="currentColor"
+          d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2M10 17L5 12L6.41 10.59L10 14.17L17.59 6.58L19 8L10 17Z" />
+      </svg>
+      {{ car.milesIncluded }} miles included
+    </div>
+    <div>
+      <span class="price">{{ car.pricePerDay | currency }}</span>
+      <span class="total-price">{{ car.totalPrice | currency }}</span>
+    </div>
+  </div>
+</div>

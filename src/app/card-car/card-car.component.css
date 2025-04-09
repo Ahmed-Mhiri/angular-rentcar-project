@@ -1,0 +1,103 @@
+.car-name {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-bottom: 4px;
+  text-transform: uppercase;
+}
+
+.car-details {
+  color: #ccc;
+  font-size: 0.9em;
+  margin-bottom: 12px;
+}
+
+.features {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.feature-item {
+  background-color: #333;
+  color: #eee;
+  padding: 8px 12px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.85em;
+  transition: background-color 0.3s ease;
+}
+
+.feature-item:hover {
+  background-color: #444;
+}
+
+.car-image-container {
+  background-color: #222;
+  padding: 16px;
+  text-align: center;
+}
+
+.car-image {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+  transition: opacity 0.3s ease;
+}
+
+.car-image:hover {
+  opacity: 0.9;
+}
+
+.footer {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border-top: 1px solid #333;
+}
+
+.miles-included {
+  color: #a7f3d0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.9em;
+}
+
+.price {
+  font-size: 1.8em;
+  font-weight: bold;
+}
+
+.total-price {
+  color: #ccc;
+  font-size: 0.85em;
+}
+
+/* Responsive Styles */
+@media (max-width: 600px) {
+  .card {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .features {
+    justify-content: center;
+  }
+
+  .feature-item {
+    font-size: 0.8em;
+  }
+
+  .car-name {
+    font-size: 1.3em;
+  }
+
+  .price {
+    font-size: 1.6em;
+  }
+}
