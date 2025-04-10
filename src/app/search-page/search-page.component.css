@@ -103,3 +103,36 @@
   color: #333;
   z-index: 1002;
 }
+.cars-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between; /* Distribute cards evenly */
+  gap: 20px; /* Add consistent spacing between the cards */
+  position: relative; /* Ensure it's the parent of the expanded view */
+}
+
+/* Cards layout */
+.app-card-car {
+  width: 250px; /* Set a fixed width for each card */
+  height: 350px; /* Set a fixed height for each card */
+  margin: 10px; /* Optional: space around each card */
+  box-sizing: border-box; /* Ensure padding and margin are included in width/height calculation */
+  display: flex;
+  flex-direction: column; /* Optional: stack content vertically within the card */
+  cursor: pointer; /* Indicate it's clickable */
+}
+
+/* Media query for larger screens (e.g., tablets, desktops) */
+@media (min-width: 600px) {
+  .app-card-car {
+    width: 250px; /* Fixed width */
+    height: 350px; /* Fixed height */
+  }
+}
+
+@media (min-width: 1000px) {
+  .app-card-car {
+    width: 250px; /* Fixed width */
+    height: 350px; /* Fixed height */
+  }
+}

@@ -6,6 +6,7 @@ import { LoginComponent } from './login/login.component';
 import { ManageBookingsComponent } from './manage-bookings/manage-bookings.component';
 import { SignupComponent } from './signup/signup.component';
 import { MainPageComponent } from './main-page/main-page.component';
+import { PurchaseComponent } from './purchase/purchase.component';
 
 export const routes: Routes = [
   { path: '', component: MainPageComponent },
@@ -13,6 +14,7 @@ export const routes: Routes = [
   { path: 'login', component: LoginComponent } ,
   { path: 'search-page', component: SearchPageComponent } ,
   { path: 'manage-bookings', component: ManageBookingsComponent } ,
-  { path: 'signup', component: SignupComponent }
+  { path: 'signup', component: SignupComponent },
+  { path: 'purchase/:id', component: PurchaseComponent }
 ];
 

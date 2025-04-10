@@ -1,30 +1,62 @@
-<div class="card">
-  <div class="header">
-    <h2 class="car-name">{{ car.name }} <span style="color: #ccc; font-weight: normal;">or similar</span></h2>
-    <p class="car-details">{{ car.details }}</p>
-  </div>
-  <div class="features">
-    <div class="feature-item" *ngFor="let feature of car.features">
-      <svg style="width:16px;height:16px" [attr.viewBox]="feature.iconViewBox">
-        <path [attr.fill]="feature.iconFill" [attr.d]="feature.iconPath"></path>
-      </svg>
-      {{ feature.value }}
+<div class="card-container">
+  <div class="card" (click)="toggleDetails()">
+    <div class="header">
+      <div class="car-info">
+        <h2 class="car-name">{{ car.model }}</h2>
+
+        <p *ngIf="car.fuelType === 'Electric' || car.fuelType === 'Hybrid'" class="car-range">
+          🔋 {{ car.rangeKm }} km range
+        </p>
+
+        <p class="car-specs">
+          💺{{ car.seats }} seats &bull; 🧳 {{ car.luggageCapacity }} luggage &bull; ⚙️ {{ car.transmission }}
+        </p>
+      </div>
+
+      <div *ngIf="car.fuelType === 'Electric' || car.fuelType === 'Hybrid'" class="fuel-type-label">
+        ⚡{{ car.fuelType }}
+      </div>
+    </div>
+
+    <div class="car-image-container">
+      <img [src]="car.image" alt="Car image" class="car-image" />
+    </div>
+
+    <div class="footer">
+      <div class="pricing">
+        <span class="price">${{ car.pricePerDay }}/day</span>
+        <span class="total-price">Total: ${{ car.totalPrice }}</span>
+      </div>
+      <button class="select-btn" (click)="goToPurchasePage(car)">Select to Rent</button>
     </div>
   </div>
-  <div class="car-image-container">
-    <img [src]="car.image" alt="Car image" class="car-image">
-  </div>
-  <div class="footer">
-    <div class="miles-included">
-      <svg style="width:16px;height:16px;color: #a7f3d0;" viewBox="0 0 24 24">
-        <path fill="currentColor"
-          d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2M10 17L5 12L6.41 10.59L10 14.17L17.59 6.58L19 8L10 17Z" />
-      </svg>
-      {{ car.milesIncluded }} miles included
-    </div>
-    <div>
-      <span class="price">{{ car.pricePerDay | currency }}</span>
-      <span class="total-price">{{ car.totalPrice | currency }}</span>
+
+  <!-- Expanded Details -->
+  <div *ngIf="isExpanded" class="expanded-wrapper" [class.mobile-slide-up]="isMobileView">
+    <div class="expanded-content">
+      
+      <!-- Left side: Image -->
+      <div class="expanded-image">
+        <button class="close-btn" (click)="isExpanded = false"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></button>
+        <img [src]="car.image" alt="Car image" class="expanded-image-img" />
+      </div>
+
+      <!-- Right side: Car details -->
+      <div class="expanded-info">
+        <h3>{{ car.model }}</h3>
+        <p><strong>Fuel:</strong> {{ car.fuelType }}</p>
+        <p *ngIf="car.fuelType === 'Electric' || car.fuelType === 'Hybrid'">
+          <strong>Range:</strong> {{ car.rangeKm }} km 🔋 
+        </p>
+        <p><strong>Seats:</strong> {{ car.seats }} 💺</p>
+        <p><strong>Luggage:</strong> {{ car.luggageCapacity }} 🧳</p>
+        <p><strong>Transmission:</strong> {{ car.transmission }} ⚙️</p>
+        <p><strong>Age Limit:</strong> {{ car.ageLimit }}+</p>
+        <p><strong>GPS:</strong> {{ car.gps ? 'Yes' : 'No' }} | <strong>Bluetooth:</strong> {{ car.bluetooth ? 'Yes' : 'No' }}</p>
+        <p class="price">Price per Day: ${{ car.pricePerDay }}</p>
+        <p class="total-price">Total Price: ${{ car.totalPrice }}</p>
+      </div>
+      <button class="select-btn" (click)="goToPurchasePage(car)">Select to Rent</button>
     </div>
   </div>
 </div>
