@@ -1,3 +1,4 @@
+<!-- Booking Summary Section -->
 <div class="container-of-booking" (click)="showMainSection = true" [class.blur-background]="showMainSection">
   <div class="booking-box">
     <p class="booking-summary">
@@ -10,23 +11,103 @@
         {{ bookingDetails.returnDateTime | date:'d MMMM HH:mm' }}
       </span>
     </p>
-    <button class="edit-button" aria-label="Edit">
-      <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000">
-        <path
-          d="M200-200h57l391-391-57-57-391 391v57Zm-80 80v-170l528-527q12-11 26.5-17t30.5-6q16 0 31 6t26 18l55 56q12 11 17.5 26t5.5 30q0 16-5.5 30.5T817-647L290-120H120Zm640-584-56-56 56 56Zm-141 85-28-29 57 57-29-28Z" />
-      </svg>
+    <button type="button" class="edit-button" aria-label="Edit booking">
+      ✏️
     </button>
   </div>
 </div>
+
+<!-- Booking Modal -->
 <div *ngIf="showMainSection" class="modal-backdrop" (click)="closeMainSection()">
   <div class="modal-content" (click)="$event.stopPropagation()">
-    <button class="close-button" (click)="closeMainSection()" aria-label="Close"><svg xmlns="http://www.w3.org/2000/svg"
-        height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF">
-        <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
-      </svg></button>
+    <button type="button" class="close-button" (click)="closeMainSection()" aria-label="Close">❌</button>
     <app-main-section (close)="closeMainSection()"></app-main-section>
   </div>
 </div>
-<div class="cars-wrapper">
-  <app-card-car *ngFor="let car of cars" [car]="car"></app-card-car>
+
+<!-- Filter Toggle -->
+<div class="filter-toggle">
+  <button type="button" (click)="toggleFilter()" [attr.aria-expanded]="isFilterOpen">
+    Filters <span [class.rotated]="isFilterOpen">▼</span>
+  </button>
 </div>
+
+<!-- Filter Panel -->
+<div class="filter-overlay" [class.show]="isFilterOpen" id="filterOverlay">
+  <div class="filter-content">
+    <button type="button" class="close-button" (click)="toggleFilter()">×</button>
+
+    <div class="filter-container">
+      <!-- Sort Filter -->
+      <div class="filter-group">
+        <label for="sort">Sort By</label>
+        <select id="sort" [(ngModel)]="sortOption" (change)="applyFilters()">
+          <option value="">None</option>
+          <option value="lowToHigh">Price: Low to High</option>
+          <option value="highToLow">Price: High to Low</option>
+          <option value="electricFirst">Electric Vehicles First</option>
+        </select>
+      </div>
+
+      <!-- Fuel Type Filter -->
+      <div class="filter-group">
+        <label for="fuelType">Fuel Type</label>
+        <select id="fuelType" [(ngModel)]="fuelTypeFilter" (change)="applyFilters()">
+          <option value="all">All</option>
+          <option value="electric">Electric</option>
+          <option value="hybrid">Hybrid</option>
+          <option value="non-electric">Other</option>
+        </select>
+      </div>
+
+      <!-- Gearshift Filter -->
+      <div class="filter-group">
+        <label for="gear">Gearshift</label>
+        <select id="gear" [(ngModel)]="gearFilter" (change)="applyFilters()">
+          <option value="">All</option>
+          <option value="Automatic">Automatic</option>
+          <option value="Manual">Manual</option>
+        </select>
+      </div>
+
+      <!-- Passengers Filter -->
+      <div class="filter-group">
+        <label for="passengers">Passengers</label>
+        <select id="passengers" [(ngModel)]="passengerFilter" (change)="applyFilters()">
+          <option value="">Any</option>
+          <option value="2">2+</option>
+          <option value="4">4+</option>
+          <option value="5">5+</option>
+          <option value="7">7+</option>
+        </select>
+      </div>
+
+      <!-- Age Filter -->
+      <div class="filter-group">
+        <label for="driverAge">Driver's Age</label>
+        <select id="driverAge" [(ngModel)]="ageFilter" (change)="applyFilters()">
+          <option value="">Any</option>
+          <option value="18">18+</option>
+          <option value="21">21+</option>
+          <option value="23">23+</option>
+          <option value="25">25+</option>
+          <option value="30">30+</option>
+        </select>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Car Results -->
+<div class="cars-wrapper">
+  <ng-container *ngIf="filteredCars.length; else noResults">
+    <app-card-car *ngFor="let car of filteredCars" [car]="car"></app-card-car>
+  </ng-container>
+</div>
+
+<!-- No Results Fallback -->
+<ng-template #noResults>
+  <div class="no-results">
+    <p>No cars match your filters. Try changing them.</p>
+  </div>
+</ng-template>
