@@ -1,0 +1,74 @@
+<div class="card-container">
+  <div class="card" (click)="toggleDetails()">
+    <div class="header">
+      <div class="truck-info">
+        <h2 class="truck-name">{{ truck.model }}</h2>
+
+        <!-- Updated the properties to match the Truck class -->
+        <p class="truck-specs">
+          🚚 Max Load: {{ truck.maxWeight }}kg
+        </p>
+        <p class="truck-specs">
+          ⚙️ {{ truck.transmission }} &bull; 🏋️‍♂️ Curb Weight: {{ truck.curbWeight }}kg
+        </p>
+
+
+        <p class="truck-specs">
+          🚐 Van Type: {{ truck.vanType }}
+        </p>
+
+      </div>
+
+      <div *ngIf="truck.engineType === 'Electric' || truck.engineType === 'Hybrid'" class="fuel-type-label">
+        ⚡{{ truck.engineType }}
+      </div>
+    </div>
+
+    <div class="truck-image-container">
+      <img [src]="truck.image" alt="Truck image" class="truck-image" />
+    </div>
+
+    <div class="footer">
+      <div class="pricing">
+        <span class="price">${{ truck.pricePerDay }}/day</span>
+        <span class="total-price">Total: ${{ truck.totalPrice }}</span>
+      </div>
+      <button class="select-btn" (click)="goToPurchasePage(truck)">Select to Rent</button>
+    </div>
+  </div>
+
+  <!-- Expanded Details -->
+  <div *ngIf="isExpanded" class="expanded-wrapper" [class.mobile-slide-up]="isMobileView">
+    <div class="expanded-content">
+
+      <!-- Left side: Image -->
+      <div class="expanded-image">
+        <button class="close-btn" (click)="isExpanded = false">
+          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000">
+            <path
+              d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
+          </svg>
+        </button>
+        <img [src]="truck.image" alt="Truck image" class="expanded-image-img" />
+      </div>
+
+      <!-- Right side: Truck details -->
+      <div class="expanded-info">
+        <h3>{{ truck.model }}</h3>
+        <p><strong>Engine Type:</strong> {{ truck.engineType }}</p>
+        <p><strong>Max Load:</strong> {{ truck.maxWeight }} 🏋️‍♂️</p>
+        <p><strong>Curb Weight:</strong> {{ truck.curbWeight }} kg ⚖️</p>
+        <p><strong>Load Capacity:</strong> {{ truck.loadCapacity }} 🧳</p>
+        <p><strong>Transmission:</strong> {{ truck.transmission }} ⚙️</p>
+        <p><strong>Van Type:</strong> {{ truck.vanType }}</p> <!-- Corrected property name -->
+        <p><strong>Age Limit:</strong> {{ truck.driverAgeLimit }}+</p>
+        <p><strong>License required</strong> {{ truck.license_required }}+</p>
+
+        <p class="price">Price per Day: ${{ truck.pricePerDay }}</p>
+        <p class="total-price">Total Price: ${{ truck.totalPrice }}</p>
+      </div>
+
+      <button class="select-btn" (click)="goToPurchasePage(truck)">Select to Rent</button>
+    </div>
+  </div>
+</div>

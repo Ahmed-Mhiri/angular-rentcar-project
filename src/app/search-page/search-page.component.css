@@ -127,23 +127,53 @@
 }
 /* CARS WRAPPER */
 .cars-wrapper {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* Increase the min width for larger cards */
   gap: 20px;
-  position: relative;
+  padding: 20px;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 1600px; /* optional: cap it for ultra-wide screens */
 }
 
-.app-card-car {
-  width: 300px;
-  height: 350px;
-  margin: 10px;
+.app-card-car,
+.app-card-truck {
+  height: 460px; /* Increase height for a larger card */
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   cursor: pointer;
+  overflow: hidden;
+  background-color: #fff;
+  border-radius: 12px; /* Rounded corners */
+  box-shadow: 0 4px 16px rgba(0,0,0,0.1); /* Slightly stronger shadow for more depth */
+  transition: transform 0.2s;
 }
 
+.app-card-car:hover,
+.app-card-truck:hover {
+  transform: scale(1.05); /* Slightly larger hover effect */
+}
+
+.app-card-car img,
+.app-card-truck img {
+  width: 100%;
+  height: 180px; /* Increased height for images */
+  object-fit: cover;
+}
+
+.app-card-car .content,
+.app-card-truck .content {
+  flex: 1;
+  padding: 16px; /* Increased padding for content */
+  overflow-y: auto;
+}
+.filter-changer{
+  display: flex; 
+  gap: 20px;
+  flex-wrap: wrap; 
+  align-items: center;
+}
 @media (min-width: 600px) {
   .app-card-car {
     width: 250px;

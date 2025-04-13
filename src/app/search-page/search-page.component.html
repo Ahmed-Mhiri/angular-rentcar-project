@@ -38,76 +38,165 @@
     <button type="button" class="close-button" (click)="toggleFilter()">×</button>
 
     <div class="filter-container">
-      <!-- Sort Filter -->
+      <!-- Vehicle Type Selector -->
       <div class="filter-group">
-        <label for="sort">Sort By</label>
-        <select id="sort" [(ngModel)]="sortOption" (change)="applyFilters()">
-          <option value="">None</option>
-          <option value="lowToHigh">Price: Low to High</option>
-          <option value="highToLow">Price: High to Low</option>
-          <option value="electricFirst">Electric Vehicles First</option>
+        <label for="vehicleType">Vehicle Type</label>
+        <select id="vehicleType" [(ngModel)]="vehicleType" (change)="applyFilters()">
+          <option value="car">Car</option>
+          <option value="truck">Truck</option>
         </select>
       </div>
 
-      <!-- Fuel Type Filter -->
-      <div class="filter-group">
-        <label for="fuelType">Fuel Type</label>
-        <select id="fuelType" [(ngModel)]="fuelTypeFilter" (change)="applyFilters()">
-          <option value="all">All</option>
-          <option value="electric">Electric</option>
-          <option value="hybrid">Hybrid</option>
-          <option value="non-electric">Other</option>
-        </select>
+      <!-- Car Filters -->
+      <div *ngIf="vehicleType === 'car'" class="filter-changer">
+        <div class="filter-group">
+          <label for="sort">Sort By</label>
+          <select id="sort" [(ngModel)]="sortOption" (change)="applyFilters()">
+            <option value="">None</option>
+            <option value="lowToHigh">Price: Low to High</option>
+            <option value="highToLow">Price: High to Low</option>
+            <option value="electricFirst">Electric Vehicles First</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label for="fuelType">Fuel Type</label>
+          <select id="fuelType" [(ngModel)]="fuelTypeFilter" (change)="applyFilters()">
+            <option value="all">All</option>
+            <option value="electric">Electric</option>
+            <option value="hybrid">Hybrid</option>
+            <option value="non-electric">Other</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label for="gear">Gearshift</label>
+          <select id="gear" [(ngModel)]="gearFilter" (change)="applyFilters()">
+            <option value="">All</option>
+            <option value="Automatic">Automatic</option>
+            <option value="Manual">Manual</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label for="passengers">Passengers</label>
+          <select id="passengers" [(ngModel)]="passengerFilter" (change)="applyFilters()">
+            <option value="">Any</option>
+            <option value="2">2+</option>
+            <option value="4">4+</option>
+            <option value="5">5+</option>
+            <option value="7">7+</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label for="driverAge">Driver's Age</label>
+          <select id="driverAge" [(ngModel)]="ageFilter" (change)="applyFilters()">
+            <option value="">Any</option>
+            <option value="18">18+</option>
+            <option value="21">21+</option>
+            <option value="23">23+</option>
+            <option value="25">25+</option>
+            <option value="30">30+</option>
+          </select>
+        </div>
       </div>
 
-      <!-- Gearshift Filter -->
-      <div class="filter-group">
-        <label for="gear">Gearshift</label>
-        <select id="gear" [(ngModel)]="gearFilter" (change)="applyFilters()">
-          <option value="">All</option>
-          <option value="Automatic">Automatic</option>
-          <option value="Manual">Manual</option>
-        </select>
-      </div>
+      <!-- Truck Filters -->
+      <div *ngIf="vehicleType === 'truck'" class="filter-changer">
+        <div class="filter-group">
+          <label for="sortTruck">Sort By</label>
+          <select id="sortTruck" [(ngModel)]="sortOption" (change)="applyFilters()">
+            <option value="">None</option>
+            <option value="lowToHigh">Price: Low to High</option>
+            <option value="highToLow">Price: High to Low</option>
+            <option value="electricFirst">Electric Trucks First</option>
+          </select>
+        </div>
 
-      <!-- Passengers Filter -->
-      <div class="filter-group">
-        <label for="passengers">Passengers</label>
-        <select id="passengers" [(ngModel)]="passengerFilter" (change)="applyFilters()">
-          <option value="">Any</option>
-          <option value="2">2+</option>
-          <option value="4">4+</option>
-          <option value="5">5+</option>
-          <option value="7">7+</option>
-        </select>
-      </div>
+        <div class="filter-group">
+          <label for="engineType">Engine Type</label>
+          <select id="engineType" [(ngModel)]="engineTypeFilter" (change)="applyFilters()">
+            <option value="all">All</option>
+            <option value="electric">Electric</option>
+            <option value="diesel">Diesel</option>
+          </select>
+        </div>
 
-      <!-- Age Filter -->
-      <div class="filter-group">
-        <label for="driverAge">Driver's Age</label>
-        <select id="driverAge" [(ngModel)]="ageFilter" (change)="applyFilters()">
-          <option value="">Any</option>
-          <option value="18">18+</option>
-          <option value="21">21+</option>
-          <option value="23">23+</option>
-          <option value="25">25+</option>
-          <option value="30">30+</option>
-        </select>
+        <div class="filter-group">
+          <label for="transmission">Transmission Type</label>
+          <select id="transmission" [(ngModel)]="transmissionFilter" (change)="applyFilters()">
+            <option value="">Any</option>
+            <option value="Automatic">Automatic</option>
+            <option value="Manual">Manual</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label for="vanType">Van Type</label>
+          <select id="vanType" [(ngModel)]="vanTypeFilter" (change)="applyFilters()">
+            <option value="all">All</option>
+            <option value="small van">Small Van</option>
+            <option value="medium van">Medium Van</option>
+            <option value="large van">Large Van</option>
+            <option value="extra large van">Extra Large Van</option>
+            <option value="pickup truck">Pickup Truck</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label for="maxWeight">Max Weight</label>
+          <select id="maxWeight" [(ngModel)]="maxWeightFilter" (change)="applyFilters()">
+            <option value="">Any</option>
+            <option value="2000">Up to 2000 kg</option>
+            <option value="3000">Up to 3000 kg</option>
+            <option value="3500">Up to 3500 kg</option>
+            <option value="4000">Up to 4000 kg</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label for="loadCapacity">Load Capacity (Euro Pallets)</label>
+          <select id="loadCapacity" [(ngModel)]="loadCapacityFilter" (change)="applyFilters()">
+            <option value="">Any</option>
+            <option value="2">Up to 2 Euro Pallets</option>
+            <option value="3">Up to 3 Euro Pallets</option>
+            <option value="4">Up to 4 Euro Pallets</option>
+          </select>
+        </div>
       </div>
     </div>
   </div>
 </div>
 
+
 <!-- Car Results -->
 <div class="cars-wrapper">
-  <ng-container *ngIf="filteredCars.length; else noResults">
-    <app-card-car *ngFor="let car of filteredCars" [car]="car"></app-card-car>
+  <!-- If viewing cars -->
+  <ng-container *ngIf="vehicleType === 'car'">
+    <ng-container *ngIf="filteredCars.length > 0; else noCarResults">
+      <app-card-car *ngFor="let car of filteredCars" [car]="car"></app-card-car>
+    </ng-container>
+  </ng-container>
+
+  <!-- If viewing trucks -->
+  <ng-container *ngIf="vehicleType === 'truck'">
+    <ng-container *ngIf="filteredTrucks.length > 0; else noTruckResults">
+      <app-card-truck *ngFor="let truck of filteredTrucks" [truck]="truck"></app-card-truck>
+    </ng-container>
   </ng-container>
 </div>
 
-<!-- No Results Fallback -->
-<ng-template #noResults>
+<!-- No Cars Fallback -->
+<ng-template #noCarResults>
   <div class="no-results">
     <p>No cars match your filters. Try changing them.</p>
+  </div>
+</ng-template>
+
+<!-- No Trucks Fallback -->
+<ng-template #noTruckResults>
+  <div class="no-results">
+    <p>No trucks match your filters. Try changing them.</p>
   </div>
 </ng-template>
