@@ -304,14 +304,15 @@
 
 /* Price styling */
 .price {
-  font-size: 1rem;
-  color: #333; /* Dark grey for readability */
+  font-size: 1.25rem;
   font-weight: 700;
+  background: linear-gradient(90deg, #0284c7, #3b82f6, #06b6d4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 3s linear infinite;
 }
 
-/* Style the Total Price */
-.total-price {
-  font-size: 1.5rem;
-  color: #2196F3; /* Bright color for emphasis */
-  font-weight: 700;
+@keyframes shimmer {
+  0% { background-position: 0% }
+  100% { background-position: 200% }
 }

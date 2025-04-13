@@ -1,0 +1,83 @@
+<div class="div-container">
+  <!-- Standard Package -->
+  <div class="package">
+    <div class="package-title"><i class="fas fa-car"></i><span>Standard 🚗</span></div>
+    <div class="price">TND 181.660 / day</div>
+    <div class="total-price">TOTAL TND 363.320</div>
+    <button class="select-button"><i class="fas fa-check-circle"></i>Select</button>
+    
+    <!-- Show Details Button (Visible on small screens) -->
+    <div *ngIf="isSmallScreen">
+      <button class="details-toggle" (click)="toggleDetails('standard')">
+        <span>{{ showDetails['standard'] ? '🔼' : '🔽' }}</span>
+        Show Details
+      </button>
+    </div>
+
+    <!-- Package Details (Toggled Visibility) -->
+    <ul class="features" *ngIf="showDetails['standard'] || !isSmallScreen">
+      <li class="included">✔️ Refundable up to 48h before pickup</li>
+      <li class="included">✔️ 800 km included</li>
+      <li class="included">✔️ Collision Damage & Theft Protection</li>
+      <li class="excluded">❌ Windscreen, Glass, Lights & Tyres protection</li>
+      <li class="excluded">❌ Personal Accident Protection</li>
+      <li class="excluded">❌ Personal belongings protection</li>
+      <li class="excluded">❌ Roadside assistance</li>
+    </ul>
+  </div>
+
+  <!-- Comfort Package -->
+  <div class="package">
+    <div class="package-title"><i class="fas fa-car"></i><span>Comfort 🚙</span></div>
+    <div class="price">TND 312.620 / day</div>
+    <div class="total-price">TOTAL TND 625.240</div>
+    <button class="select-button"><i class="fas fa-check-circle"></i>Select</button>
+    
+    <!-- Show Details Button (Visible on small screens) -->
+    <div *ngIf="isSmallScreen">
+      <button class="details-toggle" (click)="toggleDetails('comfort')">
+        <span>{{ showDetails['comfort'] ? '🔼' : '🔽' }}</span>
+        Show Details
+      </button>
+    </div>
+
+    <!-- Package Details (Toggled Visibility) -->
+    <ul class="features" *ngIf="showDetails['comfort'] || !isSmallScreen">
+      <li class="included">✔️ Refundable up to 48h before pickup</li>
+      <li class="included">✔️ 800 km included</li>
+      <li class="included">✔️ Collision Damage & Theft Protection</li>
+      <li class="included">✔️ Windscreen, Glass, Lights & Tyres protection</li>
+      <li class="included">✔️ Personal Accident Protection</li>
+      <li class="excluded">❌ Personal belongings protection</li>
+      <li class="excluded">❌ Roadside assistance</li>
+    </ul>
+  </div>
+
+  <!-- Comfort+ Package -->
+  <div class="package">
+    <div class="package-title"><i class="fas fa-car"></i><span>Comfort+ 🚗💨</span></div>
+    <div class="price">TND 345.545 / day</div>
+    <div class="total-price">TOTAL TND 691.090</div>
+    <button class="select-button"><i class="fas fa-check-circle"></i>Select</button>
+    
+    <!-- Show Details Button (Visible on small screens) -->
+    <div *ngIf="isSmallScreen">
+      <button class="details-toggle" (click)="toggleDetails('comfortPlus')">
+        <span>{{ showDetails['comfortPlus'] ? '🔼' : '🔽' }}</span>
+        Show Details
+      </button>
+    </div>
+
+    <!-- Package Details (Toggled Visibility) -->
+    <ul class="features" *ngIf="showDetails['comfortPlus'] || !isSmallScreen">
+      <li class="included">✔️ Refundable up to 48h before pickup</li>
+      <li class="included">✔️ 800 km included</li>
+      <li class="included">✔️ Collision Damage & Theft Protection</li>
+      <li class="included">✔️ Windscreen, Glass, Lights & Tyres protection</li>
+      <li class="included">✔️ Personal Accident Protection</li>
+      <li class="included">✔️ Personal belongings protection</li>
+      <li class="included">✔️ Roadside assistance</li>
+    </ul>
+  </div>
+</div>
+

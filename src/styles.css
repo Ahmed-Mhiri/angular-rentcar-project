@@ -78,7 +78,7 @@
   
   body {
     font-family: "Poppins",'Kumbh Sans','Open Sans', 'sans-serif';
-    background-color: #ffffff;
+    background-color: #f3f4f6; /* light gray for clean white card contrast */
     color: #1A202C;
     line-height: 1.5;
     -webkit-font-smoothing: antialiased;

@@ -20,7 +20,7 @@
 <!-- Booking Modal -->
 <div *ngIf="showMainSection" class="modal-backdrop" (click)="closeMainSection()">
   <div class="modal-content" (click)="$event.stopPropagation()">
-    <button type="button" class="close-button" (click)="closeMainSection()" aria-label="Close">❌</button>
+    <button type="button" class="close-button"  (click)="closeMainSection()" aria-label="Close">❌</button>
     <app-main-section (close)="closeMainSection()"></app-main-section>
   </div>
 </div>
@@ -35,7 +35,7 @@
 <!-- Filter Panel -->
 <div class="filter-overlay" [class.show]="isFilterOpen" id="filterOverlay">
   <div class="filter-content">
-    <button type="button" class="close-button" (click)="toggleFilter()">×</button>
+    <button type="button" class="close-button" id="close1" (click)="toggleFilter()">×</button>
 
     <div class="filter-container">
       <!-- Vehicle Type Selector -->

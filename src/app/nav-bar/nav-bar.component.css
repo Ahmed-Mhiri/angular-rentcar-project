@@ -22,8 +22,10 @@
     padding-bottom:1rem;
     transition: top 0.3s;
     z-index: 1000;
-    background-color: white;
-  }
+    background-color: #f9fafb; /* Tailwind's gray-50 */  
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* subtle separation */
+}
+
   
   .navbar.hide {
     top: -80px; /* hide navbar when scrolling down */
@@ -80,7 +82,8 @@
     right: 0; /* Attach to the right side */
     width: clamp(150px, 50vw, 300px);
     height: 100%;
-    background-color: rgb(255, 255, 255);
+    background-color: #ffffff; /* white */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* subtle separation */
     transform: translateX(100%);
     transition: transform 0.4s ease-in-out;
     list-style: none;
