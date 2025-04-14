@@ -1,0 +1,114 @@
+.extras-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* Auto-fill columns, responsive to screen size */
+  gap: 1.5rem; /* space between cards */
+  justify-items: center; /* centers the cards */
+  padding: 2rem;
+  box-sizing: border-box;
+  margin: 0 auto;
+}
+.extra-card {
+  background: linear-gradient(to bottom right, #ffffff, #f9fafb);
+  border: 1px solid #e2e8f0; /* subtle border */
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: default;
+}
+
+.extra-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.extra-card h3 {
+  font-size: 1.3rem;
+  margin: 0;
+  font-weight: 600;
+  color: #2d3748;
+}
+
+.extra-card p {
+  color: #4a5568;
+  font-size: 0.96rem;
+  line-height: 1.5;
+}
+
+.extra-card a {
+  color: #2563eb;
+  font-size: 0.88rem;
+  cursor: pointer;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.extra-card a:hover {
+  color: #1d4ed8;
+  text-decoration: underline;
+}
+
+.extra-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+  padding-top: 0.75rem;
+  border-top: 1px solid #edf2f7;
+}
+
+.price {
+  font-weight: 600;
+  font-size: 1rem;
+  color: #1a202c;
+}
+
+.driver-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.driver-count {
+  font-weight: bold;
+  padding: 0.3rem 0.75rem;
+  background-color: #f0f0f0;
+  border-radius: 8px;
+}
+
+button {
+  padding: 0.4rem 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 0.9rem;
+  transition: background-color 0.2s ease;
+}
+
+.btn-add {
+  background-color: #28a745;
+  color: white;
+}
+
+.btn-add:hover {
+  background-color: #218838;
+}
+
+.btn-remove {
+  background-color: #dc3545;
+  color: white;
+}
+
+.btn-remove:hover {
+  background-color: #c82333;
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}

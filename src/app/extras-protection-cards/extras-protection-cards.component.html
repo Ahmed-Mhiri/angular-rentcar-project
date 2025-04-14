@@ -1,0 +1,130 @@
+<div class="extras-grid">
+  <!-- Add/Remove Cards -->
+  
+  <!-- Roadside Assistance -->
+  <div class="extra-card">
+    <h3>Roadside Assistance</h3>
+    <p>All the way with you, anytime, any day.</p>
+    <p *ngIf="readMore.roadside">
+      With Roadside Assistance you benefit at any time during your rental, covering breakdowns, flat tires, and more.
+    </p>
+    <a (click)="toggleRead('roadside')">{{ readMore.roadside ? 'Read less' : 'Read more' }}</a>
+  
+    <div class="extra-footer">
+      <span class="price">TND 82.340 / total</span>
+  
+      <button *ngIf="!selectedExtras.roadside" (click)="toggleRoadside()" class="btn-add">Add</button>
+      <button *ngIf="selectedExtras.roadside" (click)="toggleRoadside()" class="btn-remove">Remove</button>
+    </div>
+  </div>
+
+  <!-- Diesel Guaranteed -->
+  <div class="extra-card">
+    <h3>Diesel Guaranteed</h3>
+    <p>Only available on EDMR, CDMR, EVMR, IVMR, and SDMR</p>
+    <div class="extra-footer">
+      <span class="price">TND 78.000 / total</span>
+      <button class="btn-add">Add</button>
+    </div>
+  </div>
+
+  <!-- Young Driver Surcharge -->
+  <div class="extra-card">
+    <h3>Young Driver Surcharge</h3>
+    <p>Required for all drivers under 23. If you remove this charge, no additional fee will be applied.</p>
+    <div class="extra-footer">
+      <span class="price">TND 103.200 / total</span>
+      <button class="btn-add">Add</button>
+    </div>
+  </div>
+
+  <!-- Navigational System -->
+  <div class="extra-card">
+    <h3>Navigational System</h3>
+    <p>Stay on the right track and book a Sat Nav, useful for unfamiliar roads.</p>
+    <div class="extra-footer">
+      <span class="price">TND 91.020 / total</span>
+      <button class="btn-add">Add</button>
+    </div>
+  </div>
+
+  <!-- Trailer Hitch -->
+  <div class="extra-card">
+    <h3>Trailer Hitch</h3>
+    <div class="extra-footer">
+      <span class="price">TND 78.000 / total</span>
+      <button class="btn-add">Add</button>
+    </div>
+  </div>
+
+  
+  <!-- Up to a Certain Number Cards -->
+  
+  <!-- Additional Driver -->
+  <div class="extra-card">
+    <h3>Additional Driver</h3>
+    <p>You can share the driving on long journeys.</p>
+    <p *ngIf="readMore.additionalDriver">
+      Enjoy peace of mind by allowing another person to drive. You can add up to 3 drivers total.
+    </p>
+    <a (click)="toggleRead('additionalDriver')">{{ readMore.additionalDriver ? 'Read less' : 'Read more' }}</a>
+  
+    <div class="extra-footer">
+      <span class="price">TND 94.530 / total</span>
+  
+      <div class="driver-controls">
+        <button class="btn-add" (click)="addDriver()" [disabled]="driverCount >= maxDrivers">
+          Add Driver
+        </button>
+  
+        <span class="driver-count">{{ driverCount }}</span>
+  
+        <button class="btn-remove" *ngIf="driverCount > 0" (click)="removeDriver()">
+          Remove
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toddler Safety Seat -->
+  <div class="extra-card">
+    <h3>Toddler Safety Seat 9-18kg, 20lb-40lb (1-3 years)</h3>
+    <p>Recommended for a child 1-3 years or 9-18kg.</p>
+    <div class="extra-footer">
+      <span class="price">TND 110.490 / total</span>
+      <div class="driver-controls">
+        <button class="btn-add" (click)="addDriver()">Add</button>
+        <span class="driver-count">{{ driverCount }}</span>
+        <button class="btn-remove" *ngIf="driverCount > 0" (click)="removeDriver()">Remove</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Child Safety Seat -->
+  <div class="extra-card">
+    <h3>Child Safety Seat 15-30kg, 33lb-66lb (4-7 years)</h3>
+    <p>Recommended for a child 4-7 years or 15-30kg.</p>
+    <div class="extra-footer">
+      <span class="price">TND 110.490 / total</span>
+      <div class="driver-controls">
+        <button class="btn-add" (click)="addDriver()">Add</button>
+        <span class="driver-count">{{ driverCount }}</span>
+        <button class="btn-remove" *ngIf="driverCount > 0" (click)="removeDriver()">Remove</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Baby Safety Seat -->
+  <div class="extra-card">
+    <h3>Baby Safety Seat 0-13kg, 0-29lb (0-12 months)</h3>
+    <p>Recommended for a child 0-12 months or 0-13kg.</p>
+    <div class="extra-footer">
+      <span class="price">TND 110.490 / total</span>
+      <div class="driver-controls">
+        <button class="btn-add" (click)="addDriver()">Add</button>
+        <span class="driver-count">{{ driverCount }}</span>
+        <button class="btn-remove" *ngIf="driverCount > 0" (click)="removeDriver()">Remove</button>
+      </div>
+    </div>
+  </div>
+</div>
