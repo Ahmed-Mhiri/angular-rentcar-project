@@ -172,20 +172,29 @@
 
 <!-- Car Results -->
 <div class="cars-wrapper">
-  <!-- If viewing cars -->
+  <!-- Cars -->
   <ng-container *ngIf="vehicleType === 'car'">
     <ng-container *ngIf="filteredCars.length > 0; else noCarResults">
-      <app-card-car *ngFor="let car of filteredCars" [car]="car"></app-card-car>
+      <app-card-car 
+        *ngFor="let car of filteredCars" 
+        [car]="car" 
+        (bookCar)="goToPurchase($event)">
+      </app-card-car>
     </ng-container>
   </ng-container>
 
-  <!-- If viewing trucks -->
+  <!-- Trucks -->
   <ng-container *ngIf="vehicleType === 'truck'">
     <ng-container *ngIf="filteredTrucks.length > 0; else noTruckResults">
-      <app-card-truck *ngFor="let truck of filteredTrucks" [truck]="truck"></app-card-truck>
+      <app-card-truck 
+        *ngFor="let truck of filteredTrucks" 
+        [truck]="truck"
+        (bookTruck)="goToPurchase($event)">
+      </app-card-truck>
     </ng-container>
   </ng-container>
 </div>
+
 
 <!-- No Cars Fallback -->
 <ng-template #noCarResults>

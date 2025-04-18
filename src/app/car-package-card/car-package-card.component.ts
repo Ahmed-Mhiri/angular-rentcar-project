@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input,HostListener  } from '@angular/core';
+import { Component, Input, Output, EventEmitter, HostListener, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-car-package-card',
@@ -7,32 +7,51 @@ import { Component, Input,HostListener  } from '@angular/core';
   styleUrls: ['./car-package-card.component.css'],
   imports: [CommonModule],
 })
-export class CarPackageCardComponent{ // This will track if details should be shown
+export class CarPackageCardComponent implements OnInit {
+  @Input() bookingDetails!: { pickup: string; return: string };
+  @Output() packageSelected = new EventEmitter<{ packageName: string; totalPrice: number }>();
+
+  isSmallScreen = false;
+  selectedPackage = 'standard'; // Preselected
+
   showDetails: { [key: string]: boolean } = {
     standard: false,
     comfort: false,
     comfortPlus: false
   };
 
-  // This will track if the screen size is small (for responsive behavior)
-  isSmallScreen: boolean = false;
+  readonly dailyRates = {
+    comfort: 30,
+    comfortPlus: 40
+  };
 
-  // On resize event, check if screen width is small
-  @HostListener('window:resize', ['$event'])
-  onResize(event: Event): void {
-    this.isSmallScreen = window.innerWidth < 768; // Adjust to your breakpoint
-  }
-
-  // Method to toggle the visibility of the details for a specific package
-  toggleDetails(packageKey: string): void {
-    // Toggle the visibility for the specific package
-    this.showDetails[packageKey] = !this.showDetails[packageKey];
-  }
-
-  // Check initial screen size on component load
   ngOnInit(): void {
     this.isSmallScreen = window.innerWidth < 768;
   }
-  
-}
 
+  @HostListener('window:resize', ['$event'])
+  onResize(): void {
+    this.isSmallScreen = window.innerWidth < 768;
+  }
+
+  toggleDetails(packageKey: string): void {
+    this.showDetails[packageKey] = !this.showDetails[packageKey];
+  }
+
+  getNumberOfDays(): number {
+    const pickup = new Date(this.bookingDetails.pickup);
+    const dropoff = new Date(this.bookingDetails.return);
+    const diff = (dropoff.getTime() - pickup.getTime()) / (1000 * 3600 * 24);
+    return Math.max(Math.ceil(diff), 1); // At least 1 day
+  }
+
+  getTotalPrice(packageName: 'comfort' | 'comfortPlus'): number {
+    return this.dailyRates[packageName] * this.getNumberOfDays();
+  }
+
+  selectPackage(packageName: 'comfort' | 'comfortPlus'): void {
+    this.selectedPackage = packageName;
+    const total = this.getTotalPrice(packageName);
+    this.packageSelected.emit({ packageName, totalPrice: total });
+  }
+}

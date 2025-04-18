@@ -1,6 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Router } from '@angular/router';
+import { Car } from '../search-page/search-page.component';
+
 @Component({
   selector: 'app-card-car',
   templateUrl: './card-car.component.html',
@@ -8,24 +10,22 @@ import { Router } from '@angular/router';
   standalone: true,
   imports: [CommonModule],
 })
-export class CardCarComponent implements OnInit {
-  @Input() car: any; // <-- This is crucial!
+export class CardCarComponent {
+  @Input() car!: Car;
+  @Output() bookCar = new EventEmitter<Car>();
+
+  onBook() {
+    this.bookCar.emit(this.car);
+  }
 
   isMobileView = false;
   isExpanded = false;
 
   constructor(private router: Router) {}
 
-  ngOnInit() {
-    this.debugFuelType();
-  }
 
   isElectricOrHybrid(): boolean {
     return this.car.fuelType === 'electric' || this.car.fuelType === 'hybrid';
-  }
-
-  debugFuelType(): void {
-    console.log('Car:', this.car);
   }
 
   toggleDetails() {

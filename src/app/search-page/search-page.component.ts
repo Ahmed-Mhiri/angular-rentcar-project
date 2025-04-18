@@ -7,8 +7,10 @@ import truckdata from '../../assets/trucks.json'; // Assuming truck data is stor
 import cardata from '../../assets/cars.json';
 import { FormsModule } from '@angular/forms';
 import { CardTruckComponent } from "../card-truck/card-truck.component";
+import { Router } from '@angular/router'; // Import in your constructor
 
-class Car {
+
+export class Car {
   constructor(
     public id: number,
     public model: string,
@@ -30,7 +32,7 @@ class Car {
   ) {}
 }
 
-class Truck {
+export class Truck {
   constructor(
     public id: number,
     public model: string,
@@ -90,7 +92,7 @@ export class SearchPageComponent implements OnInit {
     returnDateTime: 'Not specified'
   };
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(private route: ActivatedRoute, private router: Router) {}
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
@@ -357,4 +359,12 @@ export class SearchPageComponent implements OnInit {
   closeMainSection() {
     this.showMainSection = false;
   }
+  goToPurchase(selectedVehicle: Car | Truck) {
+    this.router.navigate(['/purchase'], {
+      state: {
+        bookingDetails: this.bookingDetails,
+        selectedVehicle: selectedVehicle
+      }
+    });
+}
 }

@@ -1,0 +1,120 @@
+.booking-container {
+    padding-left: clamp(24px, 10vw, 200px);
+    padding-right: clamp(24px, 10vw, 200px);
+  }
+.booking-card {
+    display: flex;
+    align-items: flex-start;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    padding: 16px;
+    gap: 20px;
+    margin-bottom: 20px;
+    transition: transform 0.2s ease;
+    cursor: pointer;
+  }
+  
+  .booking-card:hover {
+    transform: translateY(-2px);
+  }
+  
+  .vehicle-image {
+    width: 140px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 8px;
+    flex-shrink: 0;
+  }
+  
+  .booking-info {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .top-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .model {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #333;
+  }
+  
+  .price {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #2c7a7b;
+  }
+  
+  .details-row,
+  .location-row,
+  .date-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    font-size: 0.95rem;
+    color: #666;
+  }
+  
+  .detail-icon {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .booking-card {
+      flex-direction: column;
+      align-items: stretch;
+    }
+  
+    .vehicle-image {
+      width: 100%;
+      height: 180px;
+    }
+  
+    .top-row {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 6px;
+    }
+  
+    .price {
+      align-self: flex-end;
+    }
+  
+    .details-row,
+    .location-row,
+    .date-row {
+      font-size: 0.9rem;
+      gap: 8px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .vehicle-image {
+      display: none;
+    }
+  
+    .model {
+      font-size: 1.1rem;
+    }
+  
+    .price {
+      font-size: 1rem;
+    }
+  
+    .details-row,
+    .location-row,
+    .date-row {
+      font-size: 0.85rem;
+    }
+  }
+  

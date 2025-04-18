@@ -1,6 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Router } from '@angular/router';
+import { Truck } from '../search-page/search-page.component';
+
 
 @Component({
   selector: 'app-card-truck',
@@ -9,32 +11,27 @@ import { Router } from '@angular/router';
   styleUrl: './card-truck.component.css'
 })
 export class CardTruckComponent {
-  @Input() truck: any; // <-- This is crucial!
+  @Input() truck!: Truck; // ✅ <-- This is what's missing
+  @Output() bookTruck = new EventEmitter<Truck>();
+
+  onBook() {
+    this.bookTruck.emit(this.truck);
+  }
 
   isMobileView = false;
   isExpanded = false;
 
   constructor(private router: Router) {}
 
-  ngOnInit() {
-    this.debugTruckDetails();
-  }
-
   isDieselOrElectric(): boolean {
     return this.truck.engineType === 'diesel' || this.truck.engineType === 'electric';
   }
 
-  debugTruckDetails(): void {
-    console.log('Truck:', this.truck);
-  }
 
   toggleDetails() {
     this.isExpanded = !this.isExpanded;
     this.isMobileView = window.innerWidth <= 768;
   }
 
-  goToPurchasePage(truck: any): void {
-    this.router.navigate(['/purchase', truck.id]);
-  }
 
 }

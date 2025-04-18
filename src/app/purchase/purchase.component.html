@@ -1,2 +1,31 @@
-<app-car-package-card></app-car-package-card>
+<div class="booking-container">
+    <div class="booking-card">
+        <img class="vehicle-image" [src]="selectedVehicle.image" alt="Vehicle" />
+      
+        <div class="booking-info">
+          <div class="top-row">
+            <span class="model">{{ selectedVehicle.model }}</span>
+            <span class="price">{{ selectedVehicle.totalPrice | currency:'EUR' }} 💵</span>
+          </div>
+      
+          <div class="details-row">
+            <span class="detail-icon">🧳 {{ selectedVehicle.luggageCapacity }}</span>
+            <span class="detail-icon">🚪 {{ selectedVehicle.doors }}</span>
+            <span class="detail-icon">👥 {{ selectedVehicle.seats }}</span>
+          </div>
+      
+          <div class="location-row">
+            <span>📍 {{ bookingDetails.pickup }} ➡️ {{ bookingDetails.return }}</span>
+          </div>
+      
+          <div class="date-row">
+            <span>🕑 {{ bookingDetails.pickupDateTime | date: 'shortDate' }} - {{ bookingDetails.returnDateTime | date: 'shortDate' }}</span>
+          </div>
+        </div>
+      </div>
+</div>
+<app-car-package-card
+  [bookingDetails]="bookingDetails"
+  (packageSelected)="handlePackageSelection($event)">
+</app-car-package-card>
 <app-extras-protection-cards></app-extras-protection-cards>

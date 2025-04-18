@@ -27,7 +27,7 @@
         <span class="price">${{ car.pricePerDay }}/day</span>
         <span class="total-price">Total: ${{ car.totalPrice }}</span>
       </div>
-      <button class="select-btn" (click)="goToPurchasePage(car)">Select to Rent</button>
+      <button class="select-btn" (click)="onBook()">Select to Rent</button>
     </div>
   </div>
 
@@ -56,7 +56,7 @@
         <p class="price">Price per Day: ${{ car.pricePerDay }}</p>
         <p class="total-price">Total Price: ${{ car.totalPrice }}</p>
       </div>
-      <button class="select-btn" (click)="goToPurchasePage(car)">Select to Rent</button>
+      <button class="select-btn" (click)="onBook()">Select to Rent</button>
     </div>
   </div>
 </div>

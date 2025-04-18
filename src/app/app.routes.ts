@@ -15,6 +15,6 @@ export const routes: Routes = [
   { path: 'search-page', component: SearchPageComponent } ,
   { path: 'manage-bookings', component: ManageBookingsComponent } ,
   { path: 'signup', component: SignupComponent },
-  { path: 'purchase/:id', component: PurchaseComponent }
+  { path: 'purchase', component: PurchaseComponent }
 ];
 
