@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 
 interface ExtraOption {
   key: string;
@@ -23,6 +23,8 @@ interface ExtraOption {
   styleUrls: ['./extras-protection-cards.component.css']
 })
 export class ExtrasProtectionCardsComponent {
+  @Output() extrasTotalChanged = new EventEmitter<number>();
+
   extrasList: ExtraOption[] = [
     {
       key: 'crossBorder',
@@ -30,7 +32,7 @@ export class ExtrasProtectionCardsComponent {
       description: 'This option allows you to drive your rental car to selected countries.',
       longDescription: 'See Terms and Conditions for specific cross-border agreements.',
       price: 37.47,
-      currency: '€',
+      currency: '$',
       requiresReadMore: true
     },
     {
@@ -39,7 +41,7 @@ export class ExtrasProtectionCardsComponent {
       description: 'You can share the driving on long journeys.',
       longDescription: 'Enjoy the peace of mind that someone else can take the wheel when needed.',
       price: 99.79,
-      currency: '€',
+      currency: '$',
       countable: true,
       max: 3,
       requiresReadMore: true
@@ -49,7 +51,7 @@ export class ExtrasProtectionCardsComponent {
       title: 'Diesel Guaranteed',
       description: 'Only available on EDMR, CDMR, EVMR, IVMR and SDMR.',
       price: 101.13,
-      currency: '€'
+      currency: '$'
     },
     {
       key: 'youngDriver',
@@ -57,7 +59,7 @@ export class ExtrasProtectionCardsComponent {
       description: 'Required for all drivers under 23.',
       longDescription: 'If you remove this charge from your extras, no additional fee will apply.',
       price: 74.32,
-      currency: '€',
+      currency: '$',
       requiresReadMore: true
     },
     {
@@ -65,14 +67,14 @@ export class ExtrasProtectionCardsComponent {
       title: 'Navigational System',
       description: 'Stay on the right track and book a Sat Nav.',
       price: 101.13,
-      currency: '€'
+      currency: '$'
     },
     {
       key: 'toddlerSeat',
       title: 'Toddler Safety Seat 9-18kg (1-3 years)',
       description: 'Recommended for a child 1–3 years or 9–18kg.',
       price: 87.43,
-      currency: '€',
+      currency: '$',
       countable: true,
       max: 3,
       group: 'childSeats'
@@ -82,7 +84,7 @@ export class ExtrasProtectionCardsComponent {
       title: 'Child Safety Seat 15-30kg (4–7 years)',
       description: 'Recommended for a child 4–7 years or 15–30kg.',
       price: 87.43,
-      currency: '€',
+      currency: '$',
       countable: true,
       max: 3,
       group: 'childSeats'
@@ -92,7 +94,7 @@ export class ExtrasProtectionCardsComponent {
       title: 'Baby Safety Seat 0-13kg (0–12 months)',
       description: 'Recommended for a child 0–12 months or 0–13kg.',
       price: 87.43,
-      currency: '€',
+      currency: '$',
       countable: true,
       max: 3,
       group: 'childSeats'
@@ -102,27 +104,28 @@ export class ExtrasProtectionCardsComponent {
       title: 'Trailer Hitch',
       description: 'Attach a trailer or bike rack with ease using a sturdy and reliable hitch.',
       price: 87.43,
-      currency: '€'
+      currency: '$'
     }
   ];
 
-  // Initialize extrasState to prevent undefined errors
   extrasState: Record<string, { selected: boolean; count: number }> = {};
-
   readMore: Record<string, boolean> = {};
 
   constructor() {
-    // Initialize `extrasState` for each `extra.key` to avoid undefined access
     this.extrasList.forEach(extra => {
       if (!this.extrasState[extra.key]) {
         this.extrasState[extra.key] = { selected: false, count: 0 };
       }
-      this.readMore[extra.key] = false;  // Make sure readMore is also initialized
+      this.readMore[extra.key] = false;
     });
+
     this.extrasList = this.extrasList.map(extra => ({
       ...extra,
       imageSrc: `assets/adds-images/${extra.key}.jpg`
     }));
+
+    // Emit initial price (likely zero)
+    this.emitExtrasTotal();
   }
 
   toggleRead(key: string): void {
@@ -139,6 +142,24 @@ export class ExtrasProtectionCardsComponent {
 
     this.extrasState[key].count++;
     this.extrasState[key].selected = true;
+    this.emitExtrasTotal();
+  }
+
+  removeExtra(key: string): void {
+    if (this.extrasState[key].count > 0) {
+      this.extrasState[key].count--;
+      if (this.extrasState[key].count === 0) {
+        this.extrasState[key].selected = false;
+      }
+      this.emitExtrasTotal();
+    }
+  }
+
+  toggleExtra(key: string): void {
+    const state = this.extrasState[key];
+    state.selected = !state.selected;
+    state.count = state.selected ? 1 : 0;
+    this.emitExtrasTotal();
   }
 
   getGroupTotal(group: string): number {
@@ -147,18 +168,19 @@ export class ExtrasProtectionCardsComponent {
       .reduce((total, e) => total + (this.extrasState[e.key]?.count || 0), 0);
   }
 
-  removeExtra(key: string): void {
-    if (this.extrasState[key].count > 0) {
-      this.extrasState[key].count--;
-    }
-    if (this.extrasState[key].count === 0) {
-      this.extrasState[key].selected = false;
-    }
+  getTotalExtrasPrice(): number {
+    return this.extrasList.reduce((total, extra) => {
+      const state = this.extrasState[extra.key];
+      if (state && state.selected) {
+        const count = extra.countable ? state.count : 1;
+        return total + (extra.price * count);
+      }
+      return total;
+    }, 0);
   }
 
-  toggleExtra(key: string): void {
-    const state = this.extrasState[key];
-    state.selected = !state.selected;
-    state.count = state.selected ? 1 : 0;
+  emitExtrasTotal(): void {
+    const total = this.getTotalExtrasPrice();
+    this.extrasTotalChanged.emit(total);
   }
 }

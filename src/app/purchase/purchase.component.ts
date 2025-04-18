@@ -37,9 +37,17 @@ export class PurchaseComponent {
   selectedPackageName: string = '';
   selectedPackageTotal: number = 0;
 
-  handlePackageSelection(event: { packageName: string; totalPrice: number }) {
-    console.log('User selected:', event.packageName, 'Total:', event.totalPrice);
-    // Save or send to backend if needed
+  handlePackageSelection(event: { packageName: string, totalPrice: number }) {
+    // Capture the selected package name and total price
+    console.log('Package selected:', event.packageName, 'Total Price:', event.totalPrice);
+    this.selectedPackageName = event.packageName;
+    this.selectedPackageTotal = event.totalPrice;
   }
+  extrasTotal: number = 0;
+
+  handleExtrasTotalChange(total: number) {
+  console.log('Extras total received:', total);
+  this.extrasTotal = total;
+}
 }
 

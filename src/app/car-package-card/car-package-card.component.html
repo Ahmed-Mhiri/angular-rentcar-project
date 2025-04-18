@@ -1,75 +1,76 @@
-<!-- Standard Package -->
-<div class="package selected">
-  <div class="package-title"><i class="fas fa-car"></i><span>Standard ⭐</span></div>
-  <div class="price">Included</div>
-  <button class="select-button selected"><i class="fas fa-check-circle"></i> Selected</button>
-
-  <!-- Details Toggle -->
-  <div *ngIf="isSmallScreen">
-    <button class="details-toggle" (click)="toggleDetails('standard')">
-      <span>{{ showDetails['standard'] ? '🔼' : '🔽' }}</span> Show Details
-    </button>
+<div class="div-container">
+  <div
+  *ngFor="let pkg of packages"
+  class="package"
+  [class.selected]="selectedPackage === pkg.key"
+>
+  <!-- Package Title -->
+  <div class="package-title">
+    <i class="fas fa-car"></i>
+    <span>
+      {{ pkg.label }}
+      {{ pkg.key === 'standard' ? '⭐' : pkg.key === 'comfort' ? '⭐⭐' : '⭐⭐⭐' }}
+    </span>
   </div>
 
-  <!-- Features -->
-  <ul class="features" *ngIf="showDetails['standard'] || !isSmallScreen">
-    <li class="included">✔️ Refundable up to 48h before pickup</li>
-    <li class="included">✔️ 800 km included</li>
-    <li class="included">✔️ Collision Damage & Theft Protection</li>
-    <li class="excluded">❌ Windscreen, Glass, Lights & Tyres protection</li>
-    <li class="excluded">❌ Personal Accident Protection</li>
-    <li class="excluded">❌ Personal belongings protection</li>
-    <li class="excluded">❌ Roadside assistance</li>
-  </ul>
-</div>
+  <!-- Price -->
+  <div class="price">
+    {{ pkg.rate > 0 ? ('$' + pkg.rate + ' / day') : 'Included' }}
+  </div>
 
-<!-- Comfort Package -->
-<div class="package" [class.selected]="selectedPackage === 'comfort'">
-  <div class="package-title"><i class="fas fa-car"></i><span>Comfort ⭐⭐</span></div>
-  <div class="price">$30 / day</div>
-  <div class="total-price">TOTAL ${{ getTotalPrice('comfort') }}</div>
-  <button class="select-button" (click)="selectPackage('comfort')">
-    <i class="fas fa-check-circle"></i> {{ selectedPackage === 'comfort' ? 'Selected' : 'Select' }}
+  <!-- Total Price -->
+  <div class="total-price">
+    <ng-container *ngIf="pkg.rate > 0">
+      TOTAL ${{ getTotalPrice(pkg.key) }}
+    </ng-container>
+    <ng-container *ngIf="pkg.rate === 0">
+      &nbsp;
+    </ng-container>
+  </div>
+
+  <!-- Select Button -->
+  <button
+    class="select-button"
+    [class.selected]="selectedPackage === pkg.key"
+    [disabled]="selectedPackage === pkg.key"
+    (click)="selectPackage(pkg.key)"
+  >
+    <i class="fas fa-check-circle"></i>
+    {{ selectedPackage === pkg.key ? 'Selected' : 'Select' }}
   </button>
 
-  <!-- Toggle & Features -->
+  <!-- Details Toggle (for small screens) -->
   <div *ngIf="isSmallScreen">
-    <button class="details-toggle" (click)="toggleDetails('comfort')">
-      <span>{{ showDetails['comfort'] ? '🔼' : '🔽' }}</span> Show Details
+    <button
+      class="details-toggle"
+      (click)="toggleDetails(pkg.key)"
+      [attr.aria-expanded]="showDetails[pkg.key]"
+    >
+      <span>{{ showDetails[pkg.key] ? '🔼' : '🔽' }}</span> Show Details
     </button>
   </div>
-  <ul class="features" *ngIf="showDetails['comfort'] || !isSmallScreen">
+
+  <!-- Features List -->
+  <ul class="features" *ngIf="showDetails[pkg.key] || !isSmallScreen">
     <li class="included">✔️ Refundable up to 48h before pickup</li>
     <li class="included">✔️ 800 km included</li>
     <li class="included">✔️ Collision Damage & Theft Protection</li>
-    <li class="included">✔️ Windscreen, Glass, Lights & Tyres protection</li>
-    <li class="included">✔️ Personal Accident Protection</li>
-    <li class="excluded">❌ Personal belongings protection</li>
-    <li class="excluded">❌ Roadside assistance</li>
+
+    <li [class.included]="pkg.key !== 'standard'" [class.excluded]="pkg.key === 'standard'">
+      {{ pkg.key !== 'standard' ? '✔️' : '❌' }} Windscreen, Glass, Lights & Tyres protection
+    </li>
+
+    <li [class.included]="pkg.key !== 'standard'" [class.excluded]="pkg.key === 'standard'">
+      {{ pkg.key !== 'standard' ? '✔️' : '❌' }} Personal Accident Protection
+    </li>
+
+    <li [class.included]="pkg.key === 'comfortPlus'" [class.excluded]="pkg.key !== 'comfortPlus'">
+      {{ pkg.key === 'comfortPlus' ? '✔️' : '❌' }} Personal belongings protection
+    </li>
+
+    <li [class.included]="pkg.key === 'comfortPlus'" [class.excluded]="pkg.key !== 'comfortPlus'">
+      {{ pkg.key === 'comfortPlus' ? '✔️' : '❌' }} Roadside assistance
+    </li>
   </ul>
 </div>
-
-<!-- Comfort+ Package -->
-<div class="package" [class.selected]="selectedPackage === 'comfortPlus'">
-  <div class="package-title"><i class="fas fa-car"></i><span>Comfort+ ⭐⭐⭐</span></div>
-  <div class="price">$40 / day</div>
-  <div class="total-price">TOTAL ${{ getTotalPrice('comfortPlus') }}</div>
-  <button class="select-button" (click)="selectPackage('comfortPlus')">
-    <i class="fas fa-check-circle"></i> {{ selectedPackage === 'comfortPlus' ? 'Selected' : 'Select' }}
-  </button>
-
-  <div *ngIf="isSmallScreen">
-    <button class="details-toggle" (click)="toggleDetails('comfortPlus')">
-      <span>{{ showDetails['comfortPlus'] ? '🔼' : '🔽' }}</span> Show Details
-    </button>
-  </div>
-  <ul class="features" *ngIf="showDetails['comfortPlus'] || !isSmallScreen">
-    <li class="included">✔️ Refundable up to 48h before pickup</li>
-    <li class="included">✔️ 800 km included</li>
-    <li class="included">✔️ Collision Damage & Theft Protection</li>
-    <li class="included">✔️ Windscreen, Glass, Lights & Tyres protection</li>
-    <li class="included">✔️ Personal Accident Protection</li>
-    <li class="included">✔️ Personal belongings protection</li>
-    <li class="included">✔️ Roadside assistance</li>
-  </ul>
 </div>

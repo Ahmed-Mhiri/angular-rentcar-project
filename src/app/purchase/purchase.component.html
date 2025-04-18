@@ -1,31 +1,80 @@
 <div class="booking-container">
-    <div class="booking-card">
-        <img class="vehicle-image" [src]="selectedVehicle.image" alt="Vehicle" />
-      
-        <div class="booking-info">
-          <div class="top-row">
-            <span class="model">{{ selectedVehicle.model }}</span>
-            <span class="price">{{ selectedVehicle.totalPrice | currency:'EUR' }} 💵</span>
-          </div>
-      
-          <div class="details-row">
-            <span class="detail-icon">🧳 {{ selectedVehicle.luggageCapacity }}</span>
-            <span class="detail-icon">🚪 {{ selectedVehicle.doors }}</span>
-            <span class="detail-icon">👥 {{ selectedVehicle.seats }}</span>
-          </div>
-      
-          <div class="location-row">
-            <span>📍 {{ bookingDetails.pickup }} ➡️ {{ bookingDetails.return }}</span>
-          </div>
-      
-          <div class="date-row">
-            <span>🕑 {{ bookingDetails.pickupDateTime | date: 'shortDate' }} - {{ bookingDetails.returnDateTime | date: 'shortDate' }}</span>
-          </div>
+  <div class="booking-card">
+    <img class="vehicle-image" [src]="selectedVehicle.image" alt="Vehicle" />
+    
+    <div class="booking-info">
+      <!-- Vehicle Model & Price -->
+      <div class="top-row">
+        <span class="model">{{ selectedVehicle.model }}</span>
+        <span class="price">{{ selectedVehicle.totalPrice }}$</span>
+      </div>
+
+      <!-- Vehicle Details (Luggage, Doors, Seats) -->
+      <div class="details-row">
+        <span class="detail-icon">🧳 {{ selectedVehicle.luggageCapacity }} Luggage</span>
+        <span class="detail-icon">🚪 {{ selectedVehicle.doors }} Doors</span>
+        <span class="detail-icon">👥 {{ selectedVehicle.seats }} Seats</span>
+      </div>
+
+      <!-- Location Details -->
+      <div class="location-row">
+        <span>📍 Pickup: {{ bookingDetails.pickup }} ➡️ Return: {{ bookingDetails.return }}</span>
+      </div>
+
+      <!-- Date Details -->
+      <div class="date-row">
+        <span>🕑 {{ bookingDetails.pickupDateTime | date: 'shortDate' }} - {{ bookingDetails.returnDateTime | date: 'shortDate' }}</span>
+      </div>
+
+      <!-- Protection, Extras Section -->
+      <div class="protection-extras">
+        <div class="protection-title">
+          <span class="step">3</span> Protection & Extras
+        </div>
+        <div class="protection-details">
+          <div class="title">Comfort</div>
+          <div class="price">€336.90</div>
+          <div class="title" style="margin-top:12px;">0 Extra</div>
+          <div class="price">€0.00</div>
         </div>
       </div>
+
+      <!-- Review Section -->
+      <div class="review-section">
+        <div class="review-title">
+          <span class="step">4</span> Review
+        </div>
+        <div class="title">Total Price</div>
+        <div class="price">€933.61</div>
+      </div>
+
+    </div>
+  </div>
 </div>
-<app-car-package-card
-  [bookingDetails]="bookingDetails"
-  (packageSelected)="handlePackageSelection($event)">
-</app-car-package-card>
-<app-extras-protection-cards></app-extras-protection-cards>
+<!-- Parent component template -->
+<!-- Page Title -->
+<h2 class="section-title main-title">🛡️ Choose your protection & extras</h2>
+
+<!-- Protection Plans Section -->
+<section class="section-block">
+  <h3 class="section-title">
+    🛡️ Protection Plans
+  </h3>
+
+  <app-car-package-card
+    [bookingDetails]="bookingDetails"
+    (packageSelected)="handlePackageSelection($event)">
+  </app-car-package-card>
+</section>
+
+<!-- Available Extras Section -->
+<section class="section-block">
+  <h3 class="section-title">
+    ➕ Available Extras
+  </h3>
+
+  <app-extras-protection-cards
+    (extrasTotalChanged)="handleExtrasTotalChange($event)">
+  </app-extras-protection-cards>
+</section>
+

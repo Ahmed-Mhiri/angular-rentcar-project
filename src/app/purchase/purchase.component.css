@@ -67,6 +67,42 @@
     align-items: center;
     gap: 4px;
   }
+  .protection-extras, .review-section {
+    margin-top: 20px;
+    padding: 10px 0;
+    border-top: 1px solid #ddd;
+  }
+  
+  .protection-title, .review-title {
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #333;
+  }
+  
+  .protection-details, .review-section {
+    margin-left: 20px;
+  }
+  
+  .protection-details .title, .review-section .title {
+    font-size: 14px;
+    color: #555;
+    margin-top: 10px;
+  }
+  
+  .protection-details .price, .review-section .price {
+    font-size: 18px;
+    font-weight: bold;
+    color: #444;
+  }
+  
+  .step {
+    background: #ccc;
+    color: white;
+    font-weight: bold;
+    border-radius: 4px;
+    padding: 2px 6px;
+    margin-right: 8px;
+  }
   
   /* Responsive Design */
   @media (max-width: 768px) {
@@ -116,5 +152,44 @@
     .date-row {
       font-size: 0.85rem;
     }
+  }
+  .section-title {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    color: #333;
+  }
+  
+  .main-title {
+    font-size: 28px;
+    text-align: center;
+    margin-top: 40px;
+    margin-bottom: 32px;
+    color: #004d40;
+  }
+  
+
+  /* Titles & Sections (as shared before) */
+  .section-title {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    color: #333;
+  }
+  
+  .main-title {
+    font-size: 28px;
+    text-align: center;
+    margin-top: 40px;
+    margin-bottom: 32px;
+    color: #004d40;
+  }
+  
+  .section-block {
+    margin-bottom: 48px;
+    padding: 20px 30px;
+    background: #f9f9f9;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
   }
   
