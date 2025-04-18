@@ -1,56 +1,42 @@
-<div class="booking-container">
-  <div class="booking-card">
-    <img class="vehicle-image" [src]="selectedVehicle.image" alt="Vehicle" />
-    
-    <div class="booking-info">
-      <!-- Vehicle Model & Price -->
-      <div class="top-row">
-        <span class="model">{{ selectedVehicle.model }}</span>
-        <span class="price">{{ selectedVehicle.totalPrice }}$</span>
-      </div>
+<div class="booking-summary-bar">
+  <!-- Return Button -->
+  <div class="button-group left">
+    <button class="nav-button return" (click)="goBack()">← Return</button>
+  </div>
 
-      <!-- Vehicle Details (Luggage, Doors, Seats) -->
-      <div class="details-row">
-        <span class="detail-icon">🧳 {{ selectedVehicle.luggageCapacity }} Luggage</span>
-        <span class="detail-icon">🚪 {{ selectedVehicle.doors }} Doors</span>
-        <span class="detail-icon">👥 {{ selectedVehicle.seats }} Seats</span>
-      </div>
+  <!-- Summary Items -->
+  <div class="summary-items">
+    <div class="summary-item">
+      <span class="icon">📅</span>
+      <span class="text">{{ bookingDetails.pickupDateTime | date: 'shortDate' }} - {{ bookingDetails.returnDateTime | date: 'shortDate' }}</span>
+    </div>
 
-      <!-- Location Details -->
-      <div class="location-row">
-        <span>📍 Pickup: {{ bookingDetails.pickup }} ➡️ Return: {{ bookingDetails.return }}</span>
-      </div>
+    <div class="summary-item">
+      <span class="icon">🚗</span>
+      <span class="text">{{ selectedVehicle.model }}</span>
+    </div>
 
-      <!-- Date Details -->
-      <div class="date-row">
-        <span>🕑 {{ bookingDetails.pickupDateTime | date: 'shortDate' }} - {{ bookingDetails.returnDateTime | date: 'shortDate' }}</span>
-      </div>
+    <div class="summary-item">
+      <span class="icon">🛡️</span>
+      <span class="text">Comfort (€336.90)</span>
+    </div>
 
-      <!-- Protection, Extras Section -->
-      <div class="protection-extras">
-        <div class="protection-title">
-          <span class="step">3</span> Protection & Extras
-        </div>
-        <div class="protection-details">
-          <div class="title">Comfort</div>
-          <div class="price">€336.90</div>
-          <div class="title" style="margin-top:12px;">0 Extra</div>
-          <div class="price">€0.00</div>
-        </div>
-      </div>
-
-      <!-- Review Section -->
-      <div class="review-section">
-        <div class="review-title">
-          <span class="step">4</span> Review
-        </div>
-        <div class="title">Total Price</div>
-        <div class="price">€933.61</div>
-      </div>
-
+    <div class="summary-item">
+      <span class="icon">➕</span>
+      <span class="text">0 Extras (€0.00)</span>
     </div>
   </div>
+
+  <!-- Always Visible Total + Continue -->
+  <div class="action-group">
+    <div class="summary-item total">
+      <span class="icon">💰</span>
+      <span class="text total-text">€933.61</span>
+    </div>
+    <button class="nav-button continue" (click)="goToPayment()">Continue →</button>
+  </div>
 </div>
+
 <!-- Parent component template -->
 <!-- Page Title -->
 <h2 class="section-title main-title">🛡️ Choose your protection & extras</h2>

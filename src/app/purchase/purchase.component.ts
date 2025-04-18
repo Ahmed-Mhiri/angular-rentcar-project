@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { CarPackageCardComponent } from "../car-package-card/car-package-card.component";
 import { ExtrasProtectionCardsComponent } from "../extras-protection-cards/extras-protection-cards.component";
 import { Router } from '@angular/router';
-import { CommonModule } from '@angular/common';
+import { CommonModule,Location } from '@angular/common';
 
 @Component({
   selector: 'app-purchase',
@@ -15,7 +15,7 @@ export class PurchaseComponent {
   bookingDetails: any;
   selectedVehicle: any;
 
-  constructor(private router: Router) {
+  constructor(private router: Router,  private location: Location) {
     const navigation = this.router.getCurrentNavigation();
     const state = navigation?.extras?.state as {
       bookingDetails: any;
@@ -48,6 +48,13 @@ export class PurchaseComponent {
   handleExtrasTotalChange(total: number) {
   console.log('Extras total received:', total);
   this.extrasTotal = total;
+}
+goBack() {
+  this.location.back(); // Or navigate manually to a specific route
+}
+
+goToPayment() {
+  this.router.navigate(['/payment']); // Replace with your actual route
 }
 }
 
