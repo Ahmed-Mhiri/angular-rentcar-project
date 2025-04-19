@@ -13,17 +13,19 @@
 
     <div class="summary-item">
       <span class="icon">🚗</span>
-      <span class="text">{{ selectedVehicle.model }}</span>
+      <span class="text">{{ selectedVehicle.model }} (${{selectedVehicle.totalPrice.toFixed(2)}})</span>
     </div>
 
     <div class="summary-item">
       <span class="icon">🛡️</span>
-      <span class="text">Comfort (€336.90)</span>
+      <span class="text"> {{ selectedPackageName | titlecase }} (${{ selectedPackageTotal.toFixed(2) }})
+
+      </span>
     </div>
 
     <div class="summary-item">
       <span class="icon">➕</span>
-      <span class="text">0 Extras (€0.00)</span>
+      <span class="text">Extras (${{extrasTotal.toFixed(2)}})</span>
     </div>
   </div>
 
@@ -31,7 +33,7 @@
   <div class="action-group">
     <div class="summary-item total">
       <span class="icon">💰</span>
-      <span class="text total-text">€933.61</span>
+      <span class="text total-text">${{ totalPrice.toFixed(2) }}</span>
     </div>
     <button class="nav-button continue" (click)="goToPayment()">Continue →</button>
   </div>

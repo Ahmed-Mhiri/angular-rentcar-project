@@ -49,6 +49,10 @@ export class PurchaseComponent {
   console.log('Extras total received:', total);
   this.extrasTotal = total;
 }
+get totalPrice(): number {
+  const vehiclePrice = this.selectedVehicle?.totalPrice || 0;
+  return vehiclePrice + this.selectedPackageTotal + this.extrasTotal;
+}
 goBack() {
   this.location.back(); // Or navigate manually to a specific route
 }
