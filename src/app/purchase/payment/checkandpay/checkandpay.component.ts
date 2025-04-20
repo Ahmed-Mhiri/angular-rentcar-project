@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -44,7 +44,7 @@ export class CheckandpayComponent implements OnInit {
 
   selectedCountryCode = '';
 
-  totalPrice = 199.99; // Replace with actual logic as needed
+  @Input() totalPrice: number = 0;
 
   onCountryChange() {
     const selected = this.countries.find(c => c.name === this.driver.country);

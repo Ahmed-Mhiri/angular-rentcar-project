@@ -152,6 +152,7 @@
 
   <!-- ✅ Submit Button -->
   <div class="form-group submit-section">
-    <button type="submit" class="submit-btn" [disabled]="driverForm.invalid">Submit</button>
+    <button type="submit" class="submit-btn" [disabled]="driverForm.invalid">Pay</button>
   </div>
+  <div class="total-price" style="font-weight: bold;">Total: ${{ totalPrice.toFixed(2) }}</div>
 </form>
