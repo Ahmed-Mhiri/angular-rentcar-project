@@ -90,14 +90,14 @@
 
 /* Responsive: Hide all summary except "Continue" on small screens */
 @media (max-width: 768px) {
-  .summary-items,
-  .button-group.left {
-    display: none;
-  }
-
   .booking-summary-bar {
     justify-content: space-between;
-    padding: 14px 18px;
+    padding: 10px 14px;
+    flex-wrap: nowrap;
+  }
+  .nav-button.return {
+    padding: 4px 8px; /* Smaller padding */
+    font-size: 12px;   /* Smaller font */
   }
 
   .summary-item.total {
@@ -112,19 +112,12 @@
     font-size: 15px;
     padding: 10px 20px;
   }
-  .summary-items,
-  .button-group.left {
+  .summary-items{
     display: none;
   }
 
   .booking-summary-bar {
-    justify-content: flex-end;
-    padding: 12px 16px;
-  }
-
-  .nav-button.continue {
-    font-size: 15px;
-    padding: 10px 20px;
+    padding: 10px 16px;
   }
 }
 

@@ -3,6 +3,13 @@ import { CarPackageCardComponent } from "../car-package-card/car-package-card.co
 import { ExtrasProtectionCardsComponent } from "../extras-protection-cards/extras-protection-cards.component";
 import { Router } from '@angular/router';
 import { CommonModule,Location } from '@angular/common';
+interface SelectedExtra {
+  key: string;
+  title: string;
+  price: number;
+  count: number;
+  totalPrice: number;
+}
 
 @Component({
   selector: 'app-purchase',
@@ -14,6 +21,9 @@ import { CommonModule,Location } from '@angular/common';
 export class PurchaseComponent {
   bookingDetails: any;
   selectedVehicle: any;
+  selectedExtras: SelectedExtra[] = [];
+
+
 
   constructor(private router: Router,  private location: Location) {
     const navigation = this.router.getCurrentNavigation();
@@ -43,6 +53,10 @@ export class PurchaseComponent {
     this.selectedPackageName = event.packageName;
     this.selectedPackageTotal = event.totalPrice;
   }
+  handleSelectedExtras(extras: SelectedExtra[]): void {
+    console.log('Selected extras received:', extras);
+    this.selectedExtras = extras;
+  }
   extrasTotal: number = 0;
 
   handleExtrasTotalChange(total: number) {
@@ -53,12 +67,23 @@ get totalPrice(): number {
   const vehiclePrice = this.selectedVehicle?.totalPrice || 0;
   return vehiclePrice + this.selectedPackageTotal + this.extrasTotal;
 }
+
 goBack() {
   this.location.back(); // Or navigate manually to a specific route
 }
 
 goToPayment() {
-  this.router.navigate(['/payment']); // Replace with your actual route
+  this.router.navigate(['/payment'], {
+    state: {
+      bookingDetails: this.bookingDetails,
+      selectedVehicle: this.selectedVehicle,
+      selectedExtras: this.selectedExtras,
+      selectedPackageName: this.selectedPackageName,
+      selectedPackageTotal: this.selectedPackageTotal,
+      totalPrice: this.totalPrice
+    }
+  });
 }
+
 }
 

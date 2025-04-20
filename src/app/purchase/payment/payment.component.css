@@ -1,0 +1,249 @@
+.booking-card-modern {
+  max-width: 450px; /* Reduced further width */
+  margin: 10px auto;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+  background: #ffffff; /* White background */
+  display: grid;
+  grid-template-rows: auto 1fr;
+}
+
+/* Vehicle Header Section */
+.vehicle-header {
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid #f2f2f2;
+}
+
+.vehicle-image {
+  width: 100%;
+  height: 140px; /* Set a fixed smaller height */
+  object-fit: cover;
+  filter: brightness(85%);
+  transition: transform 0.3s ease;
+  border-bottom: 1px solid #e2e2e2;
+}
+
+.vehicle-header:hover .vehicle-image {
+  transform: scale(1.03);
+}
+
+.vehicle-info-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 8px 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.3) 100%);
+  color: white;
+}
+
+.vehicle-type-badge {
+  background: #007bff; /* Blue */
+  color: white;
+  padding: 4px 8px;
+  border-radius: 5px;
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+.vehicle-header.small-image .vehicle-image {
+  max-height: 160px; /* Adjust as needed */
+  object-fit: cover;
+}
+
+.vehicle-specs {
+  display: flex;
+  gap: 6px;
+}
+
+.spec {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 13px;
+  color: #ddd;
+}
+
+.spec .icon {
+  font-size: 16px;
+  color: #555;
+}
+
+/* Booking Body Section */
+.booking-body {
+  padding: 12px;
+  display: grid;
+  gap: 10px;
+}
+
+.booking-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+}
+
+/* Vehicle Details */
+.vehicle-details-section {
+  border-bottom: 1px solid #f2f2f2;
+  padding-bottom: 8px;
+}
+
+.vehicle-model {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+}
+
+.vehicle-category {
+  font-size: 12px;
+  color: #777;
+}
+
+/* Booking Schedule */
+.booking-schedule {
+  display: flex;
+  gap: 12px;
+  border-bottom: 1px solid #f2f2f2;
+  padding-bottom: 8px;
+}
+
+.schedule-item {
+  flex: 1;
+}
+
+.schedule-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: #555;
+}
+
+.schedule-location {
+  font-size: 13px;
+  color: #333;
+}
+
+.schedule-time {
+  font-size: 11px;
+  color: #777;
+}
+
+/* Booking Items (Package, Extras) */
+.booking-item {
+  border-bottom: 1px solid #f2f2f2;
+  padding-bottom: 8px;
+}
+
+.item-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: #555;
+  cursor: pointer;
+}
+
+.toggle-icon {
+  font-size: 18px;
+  color: #007bff;
+}
+
+.extras-list {
+  padding-left: 0;
+}
+.extras-total {
+  margin-top: 5px;
+  text-align: right;
+  font-weight: 600;
+  font-size: 13px;
+  color: #28a745;
+}
+
+.extra-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  padding: 4px 0;
+}
+
+.extra-title {
+  color: #333;
+  font-weight: 500;
+}
+
+.extra-price {
+  font-weight: 600;
+  color: #007bff;
+}
+
+.empty-extras {
+  font-size: 12px;
+  color: #777;
+}
+
+/* Total */
+.booking-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 16px;
+  font-weight: 700;
+  color: #333;
+  padding: 10px;
+}
+
+.total-label {
+  color: #777;
+}
+
+.total-price {
+  color: #28a745; /* Green accent for total */
+}
+/* General button styles */
+.show-details-btn {
+  background-color: #4CAF50; /* Green background */
+  color: white;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px; /* Rounded corners */
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease; /* Smooth transition for hover effect */
+  margin-top: 10px;
+  width: auto;
+}
+
+/* Hover effect */
+.show-details-btn:hover {
+  background-color: #45a049; /* Darker green on hover */
+  transform: translateY(-2px); /* Slightly lift the button */
+}
+
+/* Icon style inside button */
+.show-details-btn .icon {
+  margin-right: 8px; /* Space between the icon and the text */
+  font-size: 18px; /* Slightly larger icon */
+}
+
+/* Mobile responsiveness for smaller screens */
+@media (max-width: 767px) {
+  .show-details-btn {
+    display: block; /* Ensure it's visible on small screens */
+    font-size: 18px; /* Slightly larger text for better readability */
+    padding: 12px 24px; /* Larger padding for touch targets */
+    width: 100%; /* Full width button for small screens */
+    text-align: center; /* Center the text */
+  }
+}
+@media (min-width: 767px) {
+  .show-details-btn {
+    display: none;
+  }
+}

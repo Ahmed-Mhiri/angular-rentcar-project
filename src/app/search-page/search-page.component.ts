@@ -242,6 +242,7 @@ export class SearchPageComponent implements OnInit {
 
   applyFilters() {
     if (this.vehicleType === 'car') {
+      this.bookingDetails.vehicle = 'Car'; 
       this.filteredCars = this.cars.filter(car => {
         let isMatch = true;
   
@@ -289,6 +290,8 @@ export class SearchPageComponent implements OnInit {
       }
   
     } else if (this.vehicleType === 'truck') {
+      this.bookingDetails.vehicle = 'Truck'; 
+
       // Convert maxWeightFilter to a number
       const maxWeightFilterValue = this.maxWeightFilter ? +this.maxWeightFilter : null;
   

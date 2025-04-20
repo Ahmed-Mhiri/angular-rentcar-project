@@ -15,6 +15,14 @@ interface ExtraOption {
   imageSrc?: string;
 }
 
+interface SelectedExtra {
+  key: string;
+  title: string;
+  price: number;
+  count: number;
+  totalPrice: number;
+}
+
 @Component({
   selector: 'app-extras-protection-cards',
   standalone: true,
@@ -24,6 +32,7 @@ interface ExtraOption {
 })
 export class ExtrasProtectionCardsComponent {
   @Output() extrasTotalChanged = new EventEmitter<number>();
+  @Output() selectedExtrasChanged = new EventEmitter<SelectedExtra[]>();
 
   extrasList: ExtraOption[] = [
     {
@@ -179,8 +188,27 @@ export class ExtrasProtectionCardsComponent {
     }, 0);
   }
 
+  getSelectedExtras(): SelectedExtra[] {
+    return this.extrasList
+      .filter(extra => this.extrasState[extra.key]?.selected)
+      .map(extra => {
+        const count = extra.countable ? this.extrasState[extra.key].count : 1;
+        return {
+          key: extra.key,
+          title: extra.title,
+          price: extra.price,
+          count,
+          totalPrice: extra.price * count
+        };
+      });
+  }
+
   emitExtrasTotal(): void {
     const total = this.getTotalExtrasPrice();
     this.extrasTotalChanged.emit(total);
+
+    const selectedExtras = this.getSelectedExtras();
+    console.log('Emitting selected extras:', selectedExtras); // Log before emitting
+    this.selectedExtrasChanged.emit(selectedExtras);
   }
 }

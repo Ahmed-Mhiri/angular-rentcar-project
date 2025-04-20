@@ -7,6 +7,7 @@ import { ManageBookingsComponent } from './manage-bookings/manage-bookings.compo
 import { SignupComponent } from './signup/signup.component';
 import { MainPageComponent } from './main-page/main-page.component';
 import { PurchaseComponent } from './purchase/purchase.component';
+import { PaymentComponent } from './purchase/payment/payment.component';
 
 export const routes: Routes = [
   { path: '', component: MainPageComponent },
@@ -15,6 +16,7 @@ export const routes: Routes = [
   { path: 'search-page', component: SearchPageComponent } ,
   { path: 'manage-bookings', component: ManageBookingsComponent } ,
   { path: 'signup', component: SignupComponent },
-  { path: 'purchase', component: PurchaseComponent }
+  { path: 'purchase', component: PurchaseComponent },
+  { path: 'payment', component: PaymentComponent }
 ];
 
