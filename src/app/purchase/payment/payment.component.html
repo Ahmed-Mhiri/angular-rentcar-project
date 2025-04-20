@@ -1,96 +1,104 @@
-<div class="booking-card-modern">
-  <div class="vehicle-header small-image">
-    <img [src]="selectedVehicle?.image || 'assets/placeholder-car.jpg'" alt="Selected Vehicle" class="vehicle-image" />
-    <div class="vehicle-info-overlay">
-      <span class="vehicle-type-badge">
-        {{ bookingDetails.vehicle === 'Truck' ? selectedVehicle?.vanType : selectedVehicle?.type }}
-      </span>
-      <div class="vehicle-specs">
-        <ng-container *ngIf="bookingDetails.vehicle === 'Car'">
-          <div class="spec"><i class="icon">💺</i> <span>{{ selectedVehicle?.seats }}</span></div>
-          <div class="spec"><i class="icon">⚙️</i> <span>{{ selectedVehicle?.transmission }}</span></div>
-          <div class="spec"><i class="icon">⛽</i> <span>{{ selectedVehicle?.fuelType }}</span></div>
-          <div class="spec"><i class="icon">🧳</i> <span>{{ selectedVehicle?.luggageCapacity }}</span></div>
-        </ng-container>
-
-        <ng-container *ngIf="bookingDetails.vehicle === 'Truck'">
-          <div class="spec"><i class="icon">⚙️</i> <span>{{ selectedVehicle?.transmission }}</span></div>
-          <div class="spec"><i class="icon">⛽</i> <span>{{ selectedVehicle?.engineType }}</span></div>
-          <div class="spec"><i class="icon">🏋️‍♂️</i> <span>{{ selectedVehicle?.maxWeight }}kg</span></div>
-          <div class="spec"><i class="icon">📦</i> <span>{{ selectedVehicle?.loadCapacity }}</span></div>
-        </ng-container>
+<div class="div-container">
+  
+  
+  <app-checkandpay></app-checkandpay>
+  <div style="padding: 20px;">
+    <div class="booking-card-modern">
+      <div class="vehicle-header small-image">
+        <img [src]="selectedVehicle?.image || 'assets/placeholder-car.jpg'" alt="Selected Vehicle" class="vehicle-image" />
+        <div class="vehicle-info-overlay">
+          <span class="vehicle-type-badge">
+            {{ bookingDetails.vehicle === 'Truck' ? selectedVehicle?.vanType : selectedVehicle?.type }}
+          </span>
+          <div class="vehicle-specs">
+            <ng-container *ngIf="bookingDetails.vehicle === 'Car'">
+              <div class="spec"><i class="icon">💺</i> <span>{{ selectedVehicle?.seats }}</span></div>
+              <div class="spec"><i class="icon">⚙️</i> <span>{{ selectedVehicle?.transmission }}</span></div>
+              <div class="spec"><i class="icon">⛽</i> <span>{{ selectedVehicle?.fuelType }}</span></div>
+              <div class="spec"><i class="icon">🧳</i> <span>{{ selectedVehicle?.luggageCapacity }}</span></div>
+            </ng-container>
+    
+            <ng-container *ngIf="bookingDetails.vehicle === 'Truck'">
+              <div class="spec"><i class="icon">⚙️</i> <span>{{ selectedVehicle?.transmission }}</span></div>
+              <div class="spec"><i class="icon">⛽</i> <span>{{ selectedVehicle?.engineType }}</span></div>
+              <div class="spec"><i class="icon">🏋️‍♂️</i> <span>{{ selectedVehicle?.maxWeight }}kg</span></div>
+              <div class="spec"><i class="icon">📦</i> <span>{{ selectedVehicle?.loadCapacity }}</span></div>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    
+      <!-- Show Details Button: Visible only on small screens -->
+      <button class="show-details-btn" (click)="detailsVisible = !detailsVisible">
+        {{ detailsVisible ? 'Hide Details' : 'Show Details' }}
+      </button>
+    
+      <!-- Booking Summary Section -->
+      <div class="booking-body" *ngIf="detailsVisible">
+        <h2 class="booking-title">Booking Summary</h2>
+    
+        <div class="vehicle-details-section">
+          <h3 class="vehicle-model">{{ selectedVehicle?.model }}</h3>
+          <p class="vehicle-category">{{ selectedVehicle?.vanType || selectedVehicle?.type }}</p>
+        </div>
+    
+        <div class="booking-schedule">
+          <div class="schedule-item pickup">
+            <h4 class="schedule-title">Pickup</h4>
+            <p class="schedule-location">{{ bookingDetails.pickup }}</p>
+            <p class="schedule-time">{{ bookingDetails.pickupDateTime }}</p>
+          </div>
+          <div class="schedule-item return">
+            <h4 class="schedule-title">Return</h4>
+            <p class="schedule-location">{{ bookingDetails.return }}</p>
+            <p class="schedule-time">{{ bookingDetails.returnDateTime }}</p>
+          </div>
+        </div>
+    
+        <!-- Vehicle Price -->
+        <div class="booking-item vehicle-price" *ngIf="selectedVehicle?.totalPrice">
+          <h4 class="item-title">Vehicle Price</h4>
+          <div class="extras-total">
+            ${{ selectedVehicle.totalPrice.toFixed(2) }}
+          </div>
+        </div>
+    
+        <!-- Package -->
+        <div class="booking-item package">
+          <h4 class="item-title">Package</h4>
+          <div class="extras-total">
+            {{ selectedPackageName || 'Standard Package' }} – ${{ (selectedPackageTotal || 0).toFixed(2) }}
+          </div>
+        </div>
+    
+        <!-- Extras -->
+        <div class="booking-item extras">
+          <h4 class="item-title" (click)="toggleExtras()">
+            Extras <span class="toggle-icon">{{ extrasVisible ? '−' : '+' }}</span>
+          </h4>
+          <div class="extras-list" *ngIf="extrasVisible">
+            <ul *ngIf="selectedExtras.length > 0">
+              <li class="extra-item" *ngFor="let extra of selectedExtras">
+                <span class="extra-price">${{ extra.totalPrice.toFixed(2) }}</span>
+                <span class="extra-title">{{ extra.title }} (x{{ extra.count }})</span>
+              </li>
+            </ul>
+            <p class="empty-extras" *ngIf="selectedExtras.length === 0">No extras selected.</p>
+          </div>
+    
+          <!-- Total Extras Price Line -->
+          <div class="extras-total" *ngIf="selectedExtras.length > 0">
+            Total Extras: ${{ extrasTotal.toFixed(2) }}
+          </div>
+        </div>
+      </div>
+    
+      <!-- Total Price (Always visible) -->
+      <div class="booking-total">
+        <span class="total-label">Total:</span>
+        <span class="total-price">${{ totalPrice.toFixed(2) }}</span>
       </div>
     </div>
-  </div>
 
-  <!-- Show Details Button: Visible only on small screens -->
-  <button class="show-details-btn" (click)="detailsVisible = !detailsVisible">
-    {{ detailsVisible ? 'Hide Details' : 'Show Details' }}
-  </button>
-
-  <!-- Booking Summary Section -->
-  <div class="booking-body" *ngIf="detailsVisible">
-    <h2 class="booking-title">Booking Summary</h2>
-
-    <div class="vehicle-details-section">
-      <h3 class="vehicle-model">{{ selectedVehicle?.model }}</h3>
-      <p class="vehicle-category">{{ selectedVehicle?.vanType || selectedVehicle?.type }}</p>
-    </div>
-
-    <div class="booking-schedule">
-      <div class="schedule-item pickup">
-        <h4 class="schedule-title">Pickup</h4>
-        <p class="schedule-location">{{ bookingDetails.pickup }}</p>
-        <p class="schedule-time">{{ bookingDetails.pickupDateTime }}</p>
-      </div>
-      <div class="schedule-item return">
-        <h4 class="schedule-title">Return</h4>
-        <p class="schedule-location">{{ bookingDetails.return }}</p>
-        <p class="schedule-time">{{ bookingDetails.returnDateTime }}</p>
-      </div>
-    </div>
-
-    <!-- Vehicle Price -->
-    <div class="booking-item vehicle-price" *ngIf="selectedVehicle?.totalPrice">
-      <h4 class="item-title">Vehicle Price</h4>
-      <div class="extras-total">
-        ${{ selectedVehicle.totalPrice.toFixed(2) }}
-      </div>
-    </div>
-
-    <!-- Package -->
-    <div class="booking-item package">
-      <h4 class="item-title">Package</h4>
-      <div class="extras-total">
-        {{ selectedPackageName || 'Standard Package' }} – ${{ (selectedPackageTotal || 0).toFixed(2) }}
-      </div>
-    </div>
-
-    <!-- Extras -->
-    <div class="booking-item extras">
-      <h4 class="item-title" (click)="toggleExtras()">
-        Extras <span class="toggle-icon">{{ extrasVisible ? '−' : '+' }}</span>
-      </h4>
-      <div class="extras-list" *ngIf="extrasVisible">
-        <ul *ngIf="selectedExtras.length > 0">
-          <li class="extra-item" *ngFor="let extra of selectedExtras">
-            <span class="extra-price">${{ extra.totalPrice.toFixed(2) }}</span>
-            <span class="extra-title">{{ extra.title }} (x{{ extra.count }})</span>
-          </li>
-        </ul>
-        <p class="empty-extras" *ngIf="selectedExtras.length === 0">No extras selected.</p>
-      </div>
-
-      <!-- Total Extras Price Line -->
-      <div class="extras-total" *ngIf="selectedExtras.length > 0">
-        Total Extras: ${{ extrasTotal.toFixed(2) }}
-      </div>
-    </div>
-  </div>
-
-  <!-- Total Price (Always visible) -->
-  <div class="booking-total">
-    <span class="total-label">Total:</span>
-    <span class="total-price">${{ totalPrice.toFixed(2) }}</span>
   </div>
 </div>

@@ -1,5 +1,4 @@
 .booking-card-modern {
-  max-width: 450px; /* Reduced further width */
   margin: 10px auto;
   border-radius: 8px;
   overflow: hidden;
@@ -242,9 +241,17 @@
     width: 100%; /* Full width button for small screens */
     text-align: center; /* Center the text */
   }
+  .div-container{
+    display: flex;
+    flex-direction: column-reverse;
+  }
 }
 @media (min-width: 767px) {
   .show-details-btn {
     display: none;
   }
+}
+.div-container{
+  display: flex;
+  justify-content: space-around;
 }
