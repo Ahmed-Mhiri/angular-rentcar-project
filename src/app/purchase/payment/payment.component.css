@@ -244,6 +244,7 @@
   .div-container{
     display: flex;
     flex-direction: column-reverse;
+    align-items: center;
   }
 }
 @media (min-width: 767px) {

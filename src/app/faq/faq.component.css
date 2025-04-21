@@ -1,0 +1,138 @@
+.tab-navigation {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+    background-color: #f8f8f8;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: min(400px,90vw);
+  }
+  
+  /* Style for each tab button */
+  .tab-navigation button {
+    flex: 1;
+    padding: 16px;
+    font-size: 18px;
+    font-weight: 500;
+    color: #555;
+    background-color: #f8f8f8;
+    border: none;
+    border-radius: 8px 8px 0 0;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s, transform 0.3s ease;
+    text-align: center;
+    outline: none;
+  }
+  
+  /* Hover effect for buttons */
+  .tab-navigation button:hover {
+    background-color: #e0e0e0;
+    color: #007bff;
+    transform: translateY(-3px);
+  }
+  
+  /* Active tab button style */
+  .tab-navigation button.active {
+    background-color: #007bff;
+    color: white;
+    box-shadow: 0 3px 6px rgba(0, 123, 255, 0.3);
+    transform: translateY(-4px);
+  }
+  
+  /* Small adjustments for mobile screens */
+  @media (max-width: 768px) {
+    .tab-navigation {
+      flex-direction: column;
+    }
+  
+    .tab-navigation button {
+      margin-bottom: 10px;
+    }
+  }
+.faq-help-container {
+    background-color: #f9f9f9;
+    padding: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  .tabs {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+    border-bottom: 2px solid #e5e5e5;
+  }
+  
+  .tabs button {
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: 500;
+    color: #555;
+    background-color: #fff;
+    border: 2px solid #ccc;
+    border-radius: 4px 4px 0 0;
+    margin-right: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  .tabs button.active {
+    background-color: #007bff;
+    color: white;
+    border-color: #007bff;
+  }
+  
+  .faq-section, .help-section {
+    margin-top: 30px;
+  }
+  
+  h2 {
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .faq-item, .help-topic {
+    background-color: #fff;
+    padding: 20px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  }
+  
+  .faq-item h3, .help-topic h3 {
+    font-size: 18px;
+    color: #007bff;
+    margin-bottom: 10px;
+  }
+  
+  .faq-item p, .help-topic p {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.6;
+  }
+  
+  .faq-item:hover, .help-topic:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  .faq-item p, .help-topic p {
+    margin-top: 10px;
+  }
+  
+  @media (max-width: 768px) {
+    .tabs {
+      flex-direction: column;
+    }
+  
+    .tabs button {
+      margin-bottom: 10px;
+    }
+  
+    .faq-help-container {
+      padding: 20px;
+    }
+  }
+  

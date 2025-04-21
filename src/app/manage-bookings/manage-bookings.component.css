@@ -1,0 +1,123 @@
+.page {
+    background: url('https://images.pexels.com/photos/707046/pexels-photo-707046.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2') no-repeat center center fixed;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+.manage-booking-container {
+    width: 350px;
+    margin: 50px auto;
+    padding: 40px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  h2 {
+    font-size: 28px;
+    color: #007bff;
+    margin-bottom: 30px;
+    font-weight: 600;
+  }
+  
+  /* Style for input fields and labels */
+  .input-container {
+    margin-bottom: 20px;
+    text-align: left;
+  }
+  
+  label {
+    display: block;
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 8px;
+    font-weight: 500;
+  }
+  
+  input {
+    width: 100%;
+    padding: 14px 20px;
+    font-size: 16px;
+    border: 1px solid #d1d8e0;
+    border-radius: 8px;
+    background-color: #f6f9fc;
+    color: #333;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  input:focus {
+    border-color: #007bff;
+    background-color: #e9f4fe;
+    outline: none;
+  }
+  
+  /* Hover effect on input */
+  input:hover {
+    border-color: #007bff;
+    background-color: #e9f4fe;
+  }
+  
+  /* Error and success messages */
+  .error-message, .success-message {
+    text-align: center;
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+  
+  .error-message {
+    color: red;
+  }
+  
+  .success-message {
+    color: green;
+  }
+  
+  /* Error text inside inputs */
+  .error-text {
+    color: red;
+    font-size: 12px;
+  }
+  
+  /* Button */
+  button {
+    width: 100%;
+    padding: 14px;
+    background-color: #007bff;
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-weight: 500;
+  }
+  
+  button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Mobile Responsiveness */
+  @media (max-width: 480px) {
+    .manage-booking-container {
+      width: 90%;
+      padding: 20px;
+    }
+  
+    h2 {
+      font-size: 24px;
+    }
+  
+    input, button {
+      font-size: 14px;
+      padding: 12px;
+    }
+  }

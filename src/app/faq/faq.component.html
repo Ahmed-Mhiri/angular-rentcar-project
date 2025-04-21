@@ -1,0 +1,25 @@
+<div class="faq-help-container">
+    <!-- Tab navigation -->
+    <div class="tab-navigation">
+      <button (click)="switchTab('faq')" [class.active]="currentTab === 'faq'">FAQ</button>
+      <button (click)="switchTab('help')" [class.active]="currentTab === 'help'">Help</button>
+    </div>
+  
+    <!-- FAQ Section -->
+    <div *ngIf="currentTab === 'faq'" class="faq-section">
+      <h2>Frequently Asked Questions</h2>
+      <div *ngFor="let faq of faqs" class="faq-item">
+        <h3>{{ faq.question }}</h3>
+        <p>{{ faq.answer }}</p>
+      </div>
+    </div>
+  
+    <!-- Help Section -->
+    <div *ngIf="currentTab === 'help'" class="help-section">
+      <h2>Help & Support</h2>
+      <div *ngFor="let topic of helpTopics" class="help-topic">
+        <h3>{{ topic.title }}</h3>
+        <p>{{ topic.content }}</p>
+      </div>
+    </div>
+  </div>

@@ -1,1 +1,53 @@
-<p>manage-bookings works!</p>
+<div class="page">
+    <div class="manage-booking-container">
+        <h2>Manage Your Booking</h2>
+      
+        <!-- Error message -->
+        <div *ngIf="errorMessage" class="error-message">
+          <p>{{ errorMessage }}</p>
+        </div>
+      
+        <!-- Success message -->
+        <div *ngIf="successMessage" class="success-message">
+          <p>{{ successMessage }}</p>
+        </div>
+      
+        <!-- Booking management form -->
+        <form (ngSubmit)="manageBooking()" #bookingForm="ngForm">
+          <div class="input-container">
+            <label for="email">Email:</label>
+            <input 
+              type="email" 
+              id="email" 
+              name="email" 
+              [(ngModel)]="email" 
+              required 
+              placeholder="Enter your email" 
+              #emailInput="ngModel"
+            />
+            <div *ngIf="emailInput?.invalid && emailInput?.touched" class="error-text">
+              Email is required.
+            </div>
+          </div>
+      
+          <div class="input-container">
+            <label for="bookingCode">Booking Code:</label>
+            <input 
+              type="text" 
+              id="bookingCode" 
+              name="bookingCode" 
+              [(ngModel)]="bookingCode" 
+              required 
+              placeholder="Enter your booking code" 
+              #bookingCodeInput="ngModel"
+            />
+            <div *ngIf="bookingCodeInput?.invalid && bookingCodeInput?.touched" class="error-text">
+              Booking code is required.
+            </div>
+          </div>
+      
+          <button type="submit" [disabled]="!bookingForm.form.valid">Submit</button>
+        </form>
+      </div>
+
+</div>
