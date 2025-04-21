@@ -181,15 +181,6 @@ showCars() {
     }
   })
   this.close.emit();
-
-  setTimeout(() => {
-    alert(`Booking details:
-    Vehicle: ${this.isCarSelected ? 'Car' : 'Truck'}
-    Pickup: ${this.pickupLocation}
-    Return: ${this.returnLocation || 'Not specified'}
-    Pickup Date/Time: ${this.pickupDate} ${this.pickupTime}
-    Return Date/Time: ${this.returnDate} ${this.returnTime}`);
-  }, 500);
 }
 
 
